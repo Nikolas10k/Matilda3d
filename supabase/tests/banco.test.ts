@@ -479,3 +479,31 @@ describe("categorias", () => {
     expect((await db.query("delete from categorias where slug = 'teste'")).affectedRows).toBe(1);
   });
 });
+
+describe("cadastro público", () => {
+  it("quem se cadastra sem convite fica com perfil inativo e não vê nada", async () => {
+    await comoSuperusuario(db);
+    const intruso = await valor<string>(
+      "insert into auth.users (email) values ('intruso@exemplo.com') returning id",
+    );
+    expect(await valor<boolean>("select ativo from perfis where id = $1", [intruso])).toBe(false);
+
+    await registrarVenda(membro, { pago: 1000 });
+    await como(db, "authenticated", intruso);
+    expect((await db.query("select * from vendas")).rows).toEqual([]);
+    expect((await db.query("select * from lancamentos")).rows).toEqual([]);
+    expect((await db.query("select * from clientes")).rows).toEqual([]);
+  });
+
+  it("quem foi convidado entra como membro ativo", async () => {
+    await comoSuperusuario(db);
+    const convidado = await valor<string>(
+      "insert into auth.users (email, invited_at) values ('convidado@exemplo.com', now()) returning id",
+    );
+    const { rows } = await db.query<Record<string, unknown>>(
+      "select papel, ativo from perfis where id = $1",
+      [convidado],
+    );
+    expect(rows[0]).toEqual({ papel: "membro", ativo: true });
+  });
+});

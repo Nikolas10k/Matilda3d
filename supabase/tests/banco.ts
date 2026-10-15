@@ -31,7 +31,7 @@ export async function criarUsuario(
 ): Promise<string> {
   await comoSuperusuario(db);
   const { rows } = await db.query<{ id: string }>(
-    "insert into auth.users (email, raw_user_meta_data) values ($1, $2) returning id",
+    "insert into auth.users (email, raw_user_meta_data, invited_at) values ($1, $2, now()) returning id",
     [`${nome.toLowerCase()}@exemplo.com`, JSON.stringify({ nome })],
   );
   const id = rows[0].id;
