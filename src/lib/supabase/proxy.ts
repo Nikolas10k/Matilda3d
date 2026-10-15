@@ -30,10 +30,21 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims();
   const logado = Boolean(data?.claims);
 
-  if (!logado && request.nextUrl.pathname.startsWith("/admin")) {
+  const caminho = request.nextUrl.pathname;
+
+  if (!logado && caminho.startsWith("/admin")) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
-    url.searchParams.set("voltar", request.nextUrl.pathname);
+    url.search = "";
+    url.searchParams.set("voltar", caminho + request.nextUrl.search);
+    return NextResponse.redirect(url);
+  }
+
+  // Quem já está logado não precisa ver a tela de login.
+  if (logado && caminho === "/login") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/admin";
+    url.search = "";
     return NextResponse.redirect(url);
   }
 

@@ -531,7 +531,39 @@ Ajustes feitos na Fase 1 (todos cobertos por testes em `supabase/tests/banco.tes
    pnpm dlx supabase@2.121.0 db push --include-seed  # desenvolvimento: + produtos de exemplo
    ```
 4. Gere os tipos oficiais: `pnpm db:tipos`.
-5. Convide a Karem (Authentication → Users → Invite) e promova-a a admin com o `update perfis` acima.
+5. Configure as URLs e os e-mails do Auth (seção abaixo).
+6. Convide a Karem (Authentication → Users → Invite) e promova-a a admin com o `update perfis` acima.
+
+## Auth: URLs e modelos de e-mail
+
+Os links de convite e de recuperação de senha passam por `/auth/confirmar`, que valida o link no servidor e leva para `/redefinir-senha` (onde a pessoa cria a senha).
+
+**Authentication → URL Configuration**
+
+- Site URL: `https://matilda3d.com.br` (em desenvolvimento, `http://localhost:3000`).
+- Redirect URLs: `http://localhost:3000/**` e `https://matilda3d.com.br/**`.
+
+**Authentication → Emails → Templates** (assuntos e textos em português, regra 3 do CLAUDE.md). Troque o link padrão `{{ .ConfirmationURL }}` pelos abaixo, que funcionam mesmo se o e-mail for aberto em outro aparelho:
+
+*Invite user* — Assunto: `Seu acesso ao painel da Matilda3D`
+
+```html
+<h2>Você foi convidado(a) para o painel da Matilda3D</h2>
+<p>Clique no botão abaixo para criar sua senha e entrar.</p>
+<p><a href="{{ .SiteURL }}/auth/confirmar?token_hash={{ .TokenHash }}&type=invite&next=/redefinir-senha">Criar minha senha</a></p>
+<p>Se você não esperava este convite, ignore este e-mail.</p>
+```
+
+*Reset password* — Assunto: `Crie uma nova senha para o painel da Matilda3D`
+
+```html
+<h2>Nova senha</h2>
+<p>Recebemos um pedido para trocar a senha do painel da Matilda3D.</p>
+<p><a href="{{ .SiteURL }}/auth/confirmar?token_hash={{ .TokenHash }}&type=recovery&next=/redefinir-senha">Criar nova senha</a></p>
+<p>Se não foi você, ignore este e-mail: sua senha continua a mesma.</p>
+```
+
+> O servidor de e-mail padrão do Supabase envia poucas mensagens por hora e só para os membros da organização. Antes de convidar a família em produção, configure um SMTP próprio (Authentication → Emails → SMTP Settings), ex.: Resend ou Brevo.
 
 ## Testes do banco
 
