@@ -15,7 +15,7 @@ Todas as páginas são Server Components, com dados vindos do Supabase (apenas p
 
 ## Header
 
-Logo (texto "Matilde" + "3D" na cor de destaque, com ícone de cubo), links Produtos, Como encomendar, Sobre, e botão verde "Fale no WhatsApp". No mobile, menu em gaveta (Sheet do shadcn).
+Logo (texto "Matilda" + "3D" na cor de destaque, com ícone de cubo), links Produtos, Como encomendar, Sobre, e botão verde "Fale no WhatsApp". No mobile, menu em gaveta (Sheet do shadcn).
 
 ## Home
 
@@ -35,7 +35,7 @@ Foto (proporção 4:3, `next/image`), badge da categoria, nome, descrição curt
 O botão "Pedir" abre `https://wa.me/{NEXT_PUBLIC_WHATSAPP_NUMERO}?text={mensagem}` em nova aba, com a mensagem codificada via `encodeURIComponent`:
 
 ```
-Olá, Matilde3D! Vim pelo site e tenho interesse no produto:
+Olá, Matilda3D! Vim pelo site e tenho interesse no produto:
 *{nome do produto}*{ — cor: {cor}, se escolhida}
 Valor no site: {preço formatado}
 Link: {url do produto}
@@ -45,7 +45,7 @@ Ao clicar, registrar um evento anônimo em `cliques_whatsapp` (produto_id, orige
 
 ## Formulário de encomenda (`/encomenda`)
 
-Campos: nome (obrigatório), WhatsApp (obrigatório, máscara `(00) 00000-0000`), tipo de peça (select: Chaveiro, Decoração, Presente, Topo de bolo, Lembrancinhas, Outro), quantidade (número ≥ 1), descrição da ideia (obrigatório, até 1000 caracteres), cores desejadas (texto opcional), data desejada (opcional, não pode ser no passado), imagem de referência (opcional, até 5 MB, jpg/png/webp, salva no bucket `referencias-encomendas`), checkbox de consentimento: "Autorizo a Matilde3D a entrar em contato comigo pelo WhatsApp sobre esta encomenda".
+Campos: nome (obrigatório), WhatsApp (obrigatório, máscara `(00) 00000-0000`), tipo de peça (select: Chaveiro, Decoração, Presente, Topo de bolo, Lembrancinhas, Outro), quantidade (número ≥ 1), descrição da ideia (obrigatório, até 1000 caracteres), cores desejadas (texto opcional), data desejada (opcional, não pode ser no passado), imagem de referência (opcional, até 5 MB, jpg/png/webp, salva no bucket `referencias-encomendas`), checkbox de consentimento: "Autorizo a Matilda3D a entrar em contato comigo pelo WhatsApp sobre esta encomenda".
 
 Ao enviar:
 1. Validação com Zod no cliente e no servidor.
@@ -57,7 +57,7 @@ Ao enviar:
 
 - `metadata` por página, Open Graph com imagem do produto, `sitemap.xml` e `robots.txt` gerados pelo Next.
 - Dados estruturados `Product` (JSON-LD) na página do produto.
-- Títulos no formato "{Produto} | Matilde3D".
+- Títulos no formato "{Produto} | Matilda3D".
 
 ## Desempenho
 

@@ -24,7 +24,7 @@ create table public.perfis (
 -- Dados públicos da marca (lidos pelo site)
 create table public.marca (
   id int primary key default 1 check (id = 1),
-  nome text not null default 'Matilde3D',
+  nome text not null default 'Matilda3D',
   whatsapp text,
   instagram text,
   texto_sobre text,

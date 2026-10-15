@@ -2,7 +2,7 @@
 
 ## Contexto
 
-A Matilde3D vende peças impressas em 3D: chaveiros personalizados, decoração, presentes, miniaturas, topos de bolo e encomendas sob medida. Quem produz são jovens empreendedores, com a mãe (Karem) como responsável. As vendas acontecem principalmente pelo WhatsApp e pelo Instagram.
+A Matilda3D vende peças impressas em 3D: chaveiros personalizados, decoração, presentes, miniaturas, topos de bolo e encomendas sob medida. Quem produz são jovens empreendedores, com a mãe (Karem) como responsável. As vendas acontecem principalmente pelo WhatsApp e pelo Instagram.
 
 ## Objetivos
 

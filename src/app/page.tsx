@@ -6,7 +6,7 @@ export default function Home() {
         Em construção
       </span>
       <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-        Matilde<span className="text-brand">3D</span>
+        Matilda<span className="text-brand">3D</span>
       </h1>
       <p className="max-w-md text-lg text-ink-muted">
         Ideias que saem da impressora direto pra sua mão.

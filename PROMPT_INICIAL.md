@@ -4,7 +4,7 @@ Copie o texto abaixo e cole como primeira mensagem no Claude Code, com esta past
 
 ---
 
-Você vai desenvolver a aplicação completa da **Matilde3D**, uma marca de produtos impressos em 3D. São duas partes no mesmo projeto Next.js:
+Você vai desenvolver a aplicação completa da **Matilda3D**, uma marca de produtos impressos em 3D. São duas partes no mesmo projeto Next.js:
 
 1. **Site público**: vitrine de produtos, pedido pelo WhatsApp com mensagem pronta e formulário de encomendas personalizadas.
 2. **Painel gerencial (/admin)**: produtos, calculadora de preço, registro de vendas, livro caixa, encomendas, clientes, dashboard financeiro (entradas, saídas, saldo em caixa, lucro, ticket médio, a receber) e exportação CSV.

@@ -19,8 +19,8 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: "Matilde3D | Peças impressas em 3D",
-    template: "%s | Matilde3D",
+    default: "Matilda3D | Peças impressas em 3D",
+    template: "%s | Matilda3D",
   },
   description:
     "Chaveiros, decoração, presentes e peças personalizadas impressas em 3D. Peça direto pelo WhatsApp.",

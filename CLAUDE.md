@@ -1,10 +1,10 @@
-# CLAUDE.md — Projeto Matilde3D
+# CLAUDE.md — Projeto Matilda3D
 
 Este arquivo é a memória do projeto. Leia-o inteiro antes de qualquer tarefa e consulte os documentos em `docs/` sempre que for implementar algo. Em caso de dúvida, os documentos em `docs/` são a fonte da verdade. Se algo não estiver especificado, pergunte antes de inventar.
 
 ## O que é o projeto
 
-A Matilde3D é uma marca de produtos impressos em 3D criada por jovens empreendedores (menores de idade), **Maria Clara e Tharik**, sob responsabilidade da mãe, Karem. O projeto é desenvolvido pela Givance Tech. No site público, cite os criadores só pelo primeiro nome (sem sobrenome, idade, escola ou cidade) salvo autorização da Karem.
+A Matilda3D é uma marca de produtos impressos em 3D criada por jovens empreendedores (menores de idade), **Maria Clara e Tharik**, sob responsabilidade da mãe, Karem. O projeto é desenvolvido pela Givance Tech. No site público, cite os criadores só pelo primeiro nome (sem sobrenome, idade, escola ou cidade) salvo autorização da Karem.
 
 A aplicação tem duas partes:
 
@@ -77,8 +77,8 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=        # só no servidor
 NEXT_PUBLIC_WHATSAPP_NUMERO=      # formato 55DDDNUMERO, ex.: 5561999999999
-NEXT_PUBLIC_INSTAGRAM_USUARIO=matilde3d
-NEXT_PUBLIC_SITE_URL=https://matilde3d.com.br
+NEXT_PUBLIC_INSTAGRAM_USUARIO=matilda3d
+NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 ```
 
 ## Status do projeto

@@ -1,6 +1,6 @@
-# Matilde3D
+# Matilda3D
 
-Site e painel gerencial da Matilde3D, marca de peças impressas em 3D de Maria Clara e Tharik. Desenvolvido pela Givance Tech.
+Site e painel gerencial da Matilda3D, marca de peças impressas em 3D de Maria Clara e Tharik. Desenvolvido pela Givance Tech.
 
 - **Site público:** vitrine, pedido pelo WhatsApp e encomendas personalizadas.
 - **Painel (`/admin`):** produtos, calculadora de preço, vendas, caixa, encomendas, clientes e dashboard.

@@ -54,4 +54,4 @@ O conteúdo aparece conforme a pessoa rola a página, com um movimento curto e d
 
 ## Referência visual
 
-Existe uma prévia aprovada da página inicial (arquivo `referencia/previa-site-matilde3d.html`, se fornecido). Use-a como referência de layout, hierarquia e estilo do site público.
+Existe uma prévia aprovada da página inicial (arquivo `referencia/previa-site-matilda3d.html`, se fornecido). Use-a como referência de layout, hierarquia e estilo do site público.
