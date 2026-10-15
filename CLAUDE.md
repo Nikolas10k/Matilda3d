@@ -91,7 +91,7 @@ NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 
 - [x] Fase 0 — Setup (Next.js 16.4, Tailwind v4, shadcn/ui, clientes Supabase, Vitest, formatadores com testes)
 - [x] Fase 1 — Banco de dados (migrações, seed, tipos e testes no PGlite). Aplicado no Supabase `ykuldncjtcgpormoobck` (us-east-1), com os 6 produtos de exemplo. **Pendente:** aplicar `20261016000001_limite_envios.sql` e `20261016000002_ajustes_desempenho.sql` pelo SQL Editor (o conector recusa SQL com `delete`/`drop`), desativar o cadastro público no Auth e regenerar os tipos com `pnpm db:tipos`.
-- [ ] Fase 2 — Autenticação e layout do painel
+- [x] Fase 2 — Autenticação e layout do painel (login, recuperação/convite via `/auth/confirmar`, "Acesso não liberado", menu lateral e barra inferior; testado com usuários reais de admin, membro e sem acesso). **Pendente:** modelos de e-mail e URLs do Auth no Supabase (docs/05) e SMTP próprio antes de convidar a família.
 - [ ] Fase 3 — Produtos e calculadora
 - [ ] Fase 4 — Vendas e caixa
 - [ ] Fase 5 — Dashboard

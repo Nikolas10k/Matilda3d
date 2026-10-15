@@ -1,5 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import type { Database } from "@/types/database";
 import { supabaseAnonKey, supabaseUrl } from "./env";
@@ -7,6 +8,10 @@ import { supabaseAnonKey, supabaseUrl } from "./env";
 // Cliente para Server Components, Server Actions e Route Handlers, com a sessão
 // do usuário logado (via cookies). Crie um novo a cada requisição.
 export async function createClient() {
+  // O cliente do Supabase usa Date.now() ao carregar a sessão; com
+  // cacheComponents isso só pode rodar na hora da requisição, nunca na
+  // pré-renderização.
+  await connection();
   const cookieStore = await cookies();
 
   return createServerClient<Database>(supabaseUrl(), supabaseAnonKey(), {
