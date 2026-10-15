@@ -1,5 +1,6 @@
 import "server-only";
 import { createClient } from "@supabase/supabase-js";
+import type { Database } from "@/types/database";
 import { supabaseUrl } from "./env";
 
 // Cliente com a service_role key: ignora o RLS. Use APENAS no servidor e só
@@ -11,7 +12,7 @@ export function createAdminClient() {
     throw new Error("Variável SUPABASE_SERVICE_ROLE_KEY não configurada (veja .env.example).");
   }
 
-  return createClient(supabaseUrl(), serviceRoleKey, {
+  return createClient<Database>(supabaseUrl(), serviceRoleKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }

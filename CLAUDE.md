@@ -63,6 +63,12 @@ A aplicação tem duas partes:
 - Clientes Supabase: `src/lib/supabase/client.ts` (navegador), `server.ts` (servidor com sessão), `admin.ts` (service_role, só servidor, ignora RLS).
 - Tokens de design só em `src/app/globals.css` (Tailwind v4, sem `tailwind.config`). Ver `docs/02`.
 
+### Banco de dados
+
+- Migrações em `supabase/migrations/` (nunca edite uma migração já aplicada em produção: crie outra). Toda mudança de schema precisa de teste em `supabase/tests/banco.test.ts`.
+- Tipos em `src/types/database.ts` (gerado): `pnpm db:tipos` (projeto real) ou `pnpm db:tipos:local` (das migrações, sem Supabase).
+- Os clientes Supabase já são tipados com `Database`. Use `Tables<"produtos">` etc. para tipos de linha.
+
 ## Fluxo de trabalho esperado
 
 1. Antes de cada fase, leia o documento correspondente e apresente um plano curto.
@@ -84,7 +90,7 @@ NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 ## Status do projeto
 
 - [x] Fase 0 — Setup (Next.js 16.4, Tailwind v4, shadcn/ui, clientes Supabase, Vitest, formatadores com testes)
-- [ ] Fase 1 — Banco de dados
+- [x] Fase 1 — Banco de dados (migrações 001–008, seed, tipos e testes no PGlite). **Pendente:** aplicar no projeto Supabase real quando for criado (passo a passo no fim do `docs/05`) e regenerar os tipos com `pnpm db:tipos`.
 - [ ] Fase 2 — Autenticação e layout do painel
 - [ ] Fase 3 — Produtos e calculadora
 - [ ] Fase 4 — Vendas e caixa

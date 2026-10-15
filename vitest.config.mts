@@ -4,6 +4,7 @@ export default defineConfig({
   resolve: { tsconfigPaths: true },
   test: {
     environment: "node",
-    include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
+    include: ["src/**/*.test.{ts,tsx}", "supabase/tests/**/*.test.ts"],
+    testTimeout: 30_000,
   },
 });

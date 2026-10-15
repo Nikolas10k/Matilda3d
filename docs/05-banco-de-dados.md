@@ -2,6 +2,8 @@
 
 Crie as migrações em `supabase/migrations/` na ordem abaixo. Todos os valores em dinheiro ficam em **centavos (integer)**. Gere os tipos com `supabase gen types typescript` após cada migração.
 
+> **Implementado na Fase 1.** Os arquivos em `supabase/migrations/` são a versão em vigor do SQL abaixo e prevalecem sobre ele em caso de diferença. As mudanças em relação a este documento estão em "Diferenças da implementação", no fim.
+
 ## Princípios
 
 - RLS ativado em todas as tabelas.
@@ -500,3 +502,37 @@ create policy cliques_ler on public.cliques_whatsapp for select using (public.eh
 - Categorias: Chaveiros, Decoração, Presentes, Miniaturas, Personalizados.
 - 6 produtos de exemplo (os da prévia), sem preço real (`preco_centavos` nulo ou valores fictícios claramente marcados no ambiente de desenvolvimento).
 - O primeiro admin é promovido manualmente: `update perfis set papel = 'admin' where id = '<uuid da Karem>';`
+
+## Diferenças da implementação
+
+Ajustes feitos na Fase 1 (todos cobertos por testes em `supabase/tests/banco.test.ts`):
+
+- **Proteção contra update direto** (nota do fim da migração 005): em vez de `current_setting('app.rpc')`, os gatilhos comparam `current_user`. Dentro das funções RPC (`security definer`) ele é o dono do banco; numa chamada direta pela API ele é `authenticated`. O cliente não consegue falsificar isso. Gatilhos criados:
+  - `vendas`: pela API só mudam `observacoes` e `cliente_id`.
+  - `lancamentos`: `criado_por` e `criado_em` não mudam (senão o membro poderia renovar a janela de 24 horas).
+  - `encomendas`: `venda_id` só é preenchido por `registrar_venda`.
+  - `perfis`: ninguém altera o próprio papel nem se desativa (evita ficar sem admin).
+- **Permissões de funções:** o Supabase concede `execute` a `anon` e `authenticated` em toda função nova. As migrações revogam isso de `recalcular_venda` e das funções de gatilho; só as 3 RPCs de venda ficam liberadas para `authenticated`. As views do painel também foram revogadas de `anon`.
+- **Validações extras nas RPCs:** pagamento exige forma de pagamento; todo item precisa de descrição; uma encomenda não pode ser vinculada a duas vendas ativas (depois de cancelar, pode — fluxo "Cancelar e duplicar").
+- **Índices** nas chaves estrangeiras usadas em joins e no RLS.
+- **Migração 006 — Storage:** cria os 4 buckets com limite de tamanho e tipos de arquivo, e as políticas da tabela acima.
+- **Migração 007 — Limite de envios:** tabela `limites_envio` e função `consumir_limite_envio(chave, maximo, janela)`, só para o `service_role`. Guarda um hash do IP, nunca o IP (LGPD). Atende ao "3 envios por IP a cada 10 minutos" do `docs/03`, que não funcionaria em memória na Vercel.
+- **Migração 008 — Dados iniciais:** `marca` (com o texto "Sobre nós" citando Maria Clara e Tharik), `configuracoes` e as 5 categorias vão numa migração, porque também são necessários em produção. `supabase/seed.sql` fica só com os 6 produtos de exemplo (sem preço, "Sob consulta").
+
+## Como aplicar no projeto Supabase
+
+1. Crie o projeto na região **São Paulo (sa-east-1)**.
+2. No painel do Supabase, em Authentication → Sign In / Providers, **desative "Allow new users to sign up"**: o acesso ao painel é só por convite.
+3. Vincule e aplique as migrações:
+   ```bash
+   pnpm dlx supabase@2.121.0 login
+   pnpm dlx supabase@2.121.0 link --project-ref <ref-do-projeto>
+   pnpm dlx supabase@2.121.0 db push                 # produção: só migrações
+   pnpm dlx supabase@2.121.0 db push --include-seed  # desenvolvimento: + produtos de exemplo
+   ```
+4. Gere os tipos oficiais: `pnpm db:tipos`.
+5. Convide a Karem (Authentication → Users → Invite) e promova-a a admin com o `update perfis` acima.
+
+## Testes do banco
+
+`pnpm test` aplica todas as migrações num Postgres em memória (PGlite) que emula os papéis do Supabase (`supabase/tests/supabase-shim.sql`) e verifica RLS, RPCs, estornos, saldo e permissões. Sem projeto Supabase, `pnpm db:tipos:local` gera `src/types/database.ts` pelo mesmo caminho.
