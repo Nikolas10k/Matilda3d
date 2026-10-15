@@ -461,3 +461,21 @@ describe("limite de envios do formulário", () => {
     expect(await valor<boolean>("select consumir_limite_envio('outro-ip')")).toBe(true);
   });
 });
+
+describe("categorias", () => {
+  it("todos leem; só admin cria, renomeia e apaga", async () => {
+    await como(db, "anon");
+    expect(await valor<number>("select count(*)::int from categorias")).toBeGreaterThanOrEqual(5);
+
+    await como(db, "authenticated", membro);
+    await expect(
+      db.query("insert into categorias (nome, slug) values ('Teste', 'teste')"),
+    ).rejects.toThrow(/row-level security/);
+    expect((await db.query("update categorias set nome = 'X' where slug = 'chaveiros'")).affectedRows).toBe(0);
+
+    await como(db, "authenticated", admin);
+    await db.query("insert into categorias (nome, slug) values ('Teste', 'teste')");
+    expect((await db.query("update categorias set nome = 'Teste 2' where slug = 'teste'")).affectedRows).toBe(1);
+    expect((await db.query("delete from categorias where slug = 'teste'")).affectedRows).toBe(1);
+  });
+});
