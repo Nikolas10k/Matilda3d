@@ -66,7 +66,7 @@ async function DetalheVenda({ params }: { params: Params }) {
         {venda.encomendas && (
           <>
             {" · "}
-            <Link href={`/admin/encomendas`} className="font-medium text-brand-strong hover:underline">
+            <Link href={`/admin/encomendas/${venda.encomendas.id}`} className="font-medium text-brand-strong hover:underline">
               Encomenda #{venda.encomendas.numero}
             </Link>
           </>

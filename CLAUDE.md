@@ -97,6 +97,6 @@ NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 - [x] Fase 3 — Produtos e calculadora (CRUD com fotos em webp ≤1600px, ordem por arrastar/setas/teclado, calculadora com passo a passo e testes; produto inativo some da consulta pública).
 - [x] Fase 4 — Vendas, caixa e configurações (nova venda em tela única, pagamentos parciais, cancelamento com estorno, "cancelar e duplicar", recibo pelo WhatsApp; livro caixa com saldo acumulado e comprovantes; configurações com usuários/convite). Critérios de aceite testados no navegador. **Pendente:** o convite por e-mail só funciona depois do SMTP próprio no Supabase.
 - [x] Fase 5 — Dashboard (8 indicadores com legenda, gráficos validados para daltonismo, listas, filtro de período, relatório de 12 meses e CSV de vendas/itens/caixa). Números conferidos no navegador com a planilha de `src/lib/dashboard.test.ts`.
-- [ ] Fase 6 — Encomendas e clientes
+- [x] Fase 6 — Encomendas e clientes (quadro por status no desktop e lista agrupada no celular, destaques de prazo e "sem resposta", detalhe com imagem privada, histórico e "Transformar em venda"; clientes com busca, totais, histórico e cadastro sem WhatsApp repetido). Critérios testados no navegador com encomenda simulada como o site vai gravar.
 - [ ] Fase 7 — Site público
 - [ ] Fase 8 — Polimento, SEO e deploy (**antes do deploy:** apagar a conta de teste `admin@admin.com` ou trocar a senha)
