@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: supabaseHost, pathname: "/storage/v1/object/public/**" },
     ],
   },
+  experimental: {
+    // Formulário de encomenda do site: imagem de referência de até 5 MB (docs/03) + campos.
+    serverActions: { bodySizeLimit: "6mb" },
+    // CSS (Tailwind) embutido no HTML: tira um arquivo bloqueante da primeira pintura.
+    inlineCss: true,
+  },
   turbopack: {
     rules: {
       "*.css": {

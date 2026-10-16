@@ -31,7 +31,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="pt-BR"
       className={`${fredoka.variable} ${dmSans.variable} h-full antialiased`}
+      // O script abaixo marca <html data-js> antes de pintar (animações de entrada).
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.dataset.js=''" }} />
+      </head>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );

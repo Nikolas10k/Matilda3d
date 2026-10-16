@@ -161,3 +161,46 @@
 @utility tabular {
   font-variant-numeric: tabular-nums;
 }
+
+/*
+ * Entrada ao rolar (docs/02, "Movimento"). O estado escondido só vale quando o
+ * JavaScript está ativo (html[data-js]) — sem JS, tudo aparece. `--atraso`
+ * (0, 1, 2...) escalona os itens de uma grade.
+ */
+html[data-js] [data-revelar]:not([data-visivel]) {
+  opacity: 0;
+  transform: translateY(var(--m3d-reveal-distance));
+}
+[data-revelar] {
+  transition:
+    opacity var(--m3d-reveal-duration) var(--m3d-ease-out),
+    transform var(--m3d-reveal-duration) var(--m3d-ease-out);
+  transition-delay: calc(var(--atraso, 0) * var(--m3d-reveal-stagger));
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-js] [data-revelar]:not([data-visivel]) {
+    opacity: 1;
+    transform: none;
+  }
+  [data-revelar] {
+    transition: none;
+  }
+}
+
+/* Hero: entrada leve só em CSS, sem esconder o texto (não atrasa o LCP). */
+@keyframes m3d-flutuar {
+  from {
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    transform: none;
+  }
+}
+.m3d-entrada-hero {
+  animation: m3d-flutuar 900ms var(--m3d-ease-out) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .m3d-entrada-hero {
+    animation: none;
+  }
+}

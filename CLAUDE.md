@@ -64,6 +64,8 @@ A aplicação tem duas partes:
 - Tokens de design só em `src/app/globals.css` (Tailwind v4, sem `tailwind.config`). Ver `docs/02`.
 - **Páginas do painel com dados:** o título fica fora e a parte que busca dados vai num componente async dentro de `<Suspense>` (exigência da validação de navegação instantânea do Next 16). Ver `src/app/admin/produtos/page.tsx`.
 - O cliente Supabase do servidor chama `connection()` antes de tudo (o SDK usa `Date.now()`).
+- **Nunca rode `pnpm build` com o `pnpm dev` ligado:** os dois usam `.next` e o build quebra o CSS do servidor de desenvolvimento. Pare o dev, faça o build e ligue de novo.
+- Site público: dados em `src/server/publico.ts` (`'use cache'`, cliente sem cookies). Não use `new Date()` em componentes renderizados na pré-renderização (o Next 16 recusa); calcule na hora do evento.
 
 ### Banco de dados
 
@@ -98,5 +100,5 @@ NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 - [x] Fase 4 — Vendas, caixa e configurações (nova venda em tela única, pagamentos parciais, cancelamento com estorno, "cancelar e duplicar", recibo pelo WhatsApp; livro caixa com saldo acumulado e comprovantes; configurações com usuários/convite). Critérios de aceite testados no navegador. **Pendente:** o convite por e-mail só funciona depois do SMTP próprio no Supabase.
 - [x] Fase 5 — Dashboard (8 indicadores com legenda, gráficos validados para daltonismo, listas, filtro de período, relatório de 12 meses e CSV de vendas/itens/caixa). Números conferidos no navegador com a planilha de `src/lib/dashboard.test.ts`.
 - [x] Fase 6 — Encomendas e clientes (quadro por status no desktop e lista agrupada no celular, destaques de prazo e "sem resposta", detalhe com imagem privada, histórico e "Transformar em venda"; clientes com busca, totais, histórico e cadastro sem WhatsApp repetido). Critérios testados no navegador com encomenda simulada como o site vai gravar.
-- [ ] Fase 7 — Site público
+- [x] Fase 7 — Site público (home, vitrine, produto, encomenda, sobre, obrigado; animações ao rolar; WhatsApp com mensagem pronta e cliques anônimos; formulário com upload, honeypot e limite por IP). **Pendente:** número do WhatsApp da loja, migração do limite de envios e confirmar Lighthouse ≥ 90 no domínio publicado.
 - [ ] Fase 8 — Polimento, SEO e deploy (**antes do deploy:** apagar a conta de teste `admin@admin.com` ou trocar a senha)

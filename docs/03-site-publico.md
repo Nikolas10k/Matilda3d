@@ -63,3 +63,14 @@ Ao enviar:
 
 - Imagens otimizadas via `next/image`, com `sizes` corretos.
 - Meta de Lighthouse ≥ 90 em Performance, Acessibilidade e SEO no mobile.
+
+## Notas da implementação (Fase 7)
+
+- **Cache:** as páginas são estáticas, com dados em `'use cache'` (perfil `minutes`, renova em 1 min). O painel invalida na hora (`updateTag("produtos"/"marca")`) ao salvar, então a mudança costuma aparecer imediatamente.
+- **Vitrine:** `/produtos` é estática com todos os produtos; o filtro `?categoria=slug` é aplicado no navegador (esconde os cards de outras categorias). Ficou mais rápida no Lighthouse do que filtrar no servidor.
+- **"A partir de R$ X":** não implementado, porque o schema não tem preço por variação (só `cores`). O card mostra o preço ou "Sob consulta".
+- **Encomenda na home:** seção com texto, exemplos e botão para `/encomenda` (como neste documento), no lugar do formulário curto da prévia.
+- **Número do WhatsApp:** vem de Configurações → Marca (painel); se vazio, de `NEXT_PUBLIC_WHATSAPP_NUMERO`; se os dois estiverem vazios, o link abre o WhatsApp sem destinatário.
+- **Limite de envios:** usa a função `consumir_limite_envio` (migração `…_limite_envios.sql`). Enquanto a migração não for aplicada, o formulário funciona sem o limite (honeypot continua ativo) e registra um aviso no log.
+- **Animações ao rolar:** componente `src/components/site/revelar.tsx` (docs/02, "Movimento").
+- **Lighthouse (mobile, medido localmente com `next start`):** Acessibilidade 95–96, SEO 100, Boas práticas 100; Performance 89–94 conforme a página e a rodada. Conferir de novo no domínio publicado (Fase 8).
