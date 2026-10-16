@@ -23,7 +23,7 @@ Filtro de período no topo: Este mês (padrão), Mês passado, Últimos 3 meses,
 **Gráficos** (Recharts):
 - Barras agrupadas: entradas × saídas por mês (últimos 6 meses).
 - Linha: evolução do saldo em caixa (últimos 6 meses).
-- Rosca: saídas por categoria no período.
+- Rosca: saídas por categoria no período. *(Implementado como barras horizontais com valor e %: com até 9 categorias, a rosca fica ilegível no celular e ruim para comparar valores próximos.)*
 
 **Listas**:
 - Top 5 produtos mais vendidos (quantidade e valor).
@@ -31,7 +31,7 @@ Filtro de período no topo: Este mês (padrão), Mês passado, Últimos 3 meses,
 - Encomendas que precisam de atenção (status `nova` ou com data desejada nos próximos 7 dias).
 - Últimas 5 vendas.
 
-Botões de ação rápida fixos: "+ Nova venda" e "+ Nova despesa".
+Botões de ação rápida fixos: "+ Nova venda" e "+ Nova despesa". *(Extra: cartão "Lucro bruto estimado" com o aviso de itens sem custo, regra do `docs/06`.)*
 
 ## 2. Produtos (`/admin/produtos`)
 

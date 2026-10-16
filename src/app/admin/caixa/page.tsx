@@ -42,7 +42,7 @@ async function LivroCaixa({ searchParams }: { searchParams: SearchParams }) {
     <>
       <div className="-mt-3 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-ink-muted">O caixa conta a partir de {formatarData(caixa.dataInicioCaixa)}.</p>
-        <BotoesCaixa usuarioId={usuario.id} />
+        <BotoesCaixa usuarioId={usuario.id} abrir={p.nova === "despesa" ? "saida" : p.nova === "entrada" ? "entrada" : undefined} />
       </div>
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

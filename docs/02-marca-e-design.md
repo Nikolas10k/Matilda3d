@@ -47,6 +47,14 @@ O conteúdo aparece conforme a pessoa rola a página, com um movimento curto e d
 - **Implementação:** componente próprio `<Reveal>` com IntersectionObserver + transições CSS, sem biblioteca de animação (para manter o Lighthouse ≥ 90). Tokens em `src/app/globals.css` (bloco "Movimento").
 - **Painel:** sem animações de rolagem; apenas transições curtas de estado.
 
+## Gráficos (painel)
+
+- **Entradas** `#1F7A47` e **saídas** `#C2410C`. O par foi validado para daltonismo (validador da skill de visualização de dados); o par verde `--success` × vermelho `--danger` **falha** para deuteranopia (ΔE 4,2) e não deve ser usado lado a lado em gráficos.
+- **Saldo** (série única): `--ink` `#1E1B33`, linha de 2px com área a 10%, marcador só no ponto atual.
+- Barras com no máximo 24px de espessura e ponta arredondada de 4px; grade em linha fina sólida `--border`; sem animação.
+- Todo gráfico tem legenda com texto (2+ séries), dica ao passar o mouse/dedo e uma tabela equivalente ("Ver em tabela").
+- Números grandes dos cartões usam algarismos proporcionais; `tabular-nums` só em colunas e tabelas.
+
 ## Tom de voz
 
 - Site: próximo, alegre e confiante. Frases curtas. Ex.: "Ideias que saem da impressora direto pra sua mão."

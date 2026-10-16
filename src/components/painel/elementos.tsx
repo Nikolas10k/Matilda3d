@@ -21,11 +21,13 @@ export function CartaoIndicador({
   valor,
   legenda,
   tom = "neutro",
+  aviso,
 }: {
   rotulo: string;
   valor: string;
   legenda: string;
   tom?: "neutro" | "positivo" | "negativo" | "destaque";
+  aviso?: string;
 }) {
   const cores = {
     neutro: "text-ink",
@@ -36,8 +38,9 @@ export function CartaoIndicador({
   return (
     <div className="flex flex-col gap-1 rounded-card border border-border bg-white p-4">
       <span className="text-sm font-bold text-ink-muted">{rotulo}</span>
-      <span className={cn("tabular text-2xl font-bold", cores[tom])}>{valor}</span>
+      <span className={cn("text-2xl font-bold", cores[tom])}>{valor}</span>
       <span className="text-xs text-ink-muted">{legenda}</span>
+      {aviso && <span className="mt-1 rounded-lg bg-warning/10 px-2 py-1 text-xs font-medium text-warning">{aviso}</span>}
     </div>
   );
 }

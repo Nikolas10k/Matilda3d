@@ -25,17 +25,24 @@ const NOVO = (tipo: "entrada" | "saida"): ValoresLancamento => ({
 });
 
 /** Botões "Nova despesa" e "Nova entrada" (topo da página). */
-export function BotoesCaixa({ usuarioId }: { usuarioId: string }) {
-  const [formulario, setFormulario] = useState<{ chave: number; valores: ValoresLancamento } | null>(null);
-  const abrir = (tipo: "entrada" | "saida") => setFormulario({ chave: Date.now(), valores: NOVO(tipo) });
+export function BotoesCaixa({ usuarioId, abrir }: { usuarioId: string; abrir?: "entrada" | "saida" }) {
+  const [formulario, setFormulario] = useState<{ chave: number; valores: ValoresLancamento } | null>(
+    abrir ? { chave: 0, valores: NOVO(abrir) } : null,
+  );
+  const router = useRouter();
+  const abrirFormulario = (tipo: "entrada" | "saida") => setFormulario({ chave: Date.now(), valores: NOVO(tipo) });
+  const fechar = () => {
+    setFormulario(null);
+    if (abrir) router.replace("/admin/caixa"); // tira o ?nova= da URL (veio do atalho do dashboard)
+  };
 
   return (
     <div className="flex gap-2">
-      <Button type="button" onClick={() => abrir("saida")}>
+      <Button type="button" onClick={() => abrirFormulario("saida")}>
         <Minus aria-hidden="true" />
         Nova despesa
       </Button>
-      <Button type="button" variant="outline" onClick={() => abrir("entrada")}>
+      <Button type="button" variant="outline" onClick={() => abrirFormulario("entrada")}>
         <Plus aria-hidden="true" />
         Nova entrada
       </Button>
@@ -43,7 +50,7 @@ export function BotoesCaixa({ usuarioId }: { usuarioId: string }) {
         <FormularioLancamento
           key={formulario.chave}
           aberto
-          aoFechar={() => setFormulario(null)}
+          aoFechar={fechar}
           usuarioId={usuarioId}
           inicial={formulario.valores}
         />
