@@ -99,4 +99,4 @@ NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 - [ ] Fase 5 — Dashboard
 - [ ] Fase 6 — Encomendas e clientes
 - [ ] Fase 7 — Site público
-- [ ] Fase 8 — Polimento, SEO e deploy
+- [ ] Fase 8 — Polimento, SEO e deploy (**antes do deploy:** apagar a conta de teste `admin@admin.com` ou trocar a senha)
