@@ -1,6 +1,8 @@
 // Endereços públicos do Supabase Storage (buckets públicos: produtos, marca).
 
 export const BUCKET_PRODUTOS = "produtos";
+export const BUCKET_COMPROVANTES = "comprovantes"; // privado: abrir com link assinado
+export const BUCKET_MARCA = "marca";
 
 export function urlPublica(bucket: string, caminho: string): string {
   const base = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";

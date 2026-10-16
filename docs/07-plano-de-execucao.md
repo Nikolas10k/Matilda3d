@@ -39,6 +39,7 @@ Execute uma fase por vez. Ao fim de cada uma: `pnpm lint`, `pnpm typecheck`, `pn
 
 - Nova venda (tela única mobile), lista, detalhe, registrar pagamento, cancelar com estorno, recibo via WhatsApp.
 - Livro caixa com despesas, entradas avulsas, saldo acumulado e comprovantes.
+- Configurações (`docs/04`, seção 9): marca, saldo inicial, padrões da calculadora, categorias e usuários (convite). *Incluída nesta fase em 15/10/2026, com aprovação do cliente: o caixa precisa do saldo inicial.*
 
 **Aceite**: venda parcial → registrar o restante → status "pago" e duas entradas no caixa; cancelamento gera estornos; membro não edita despesa de outro usuário.
 
