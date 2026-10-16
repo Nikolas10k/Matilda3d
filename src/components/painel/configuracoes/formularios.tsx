@@ -90,7 +90,7 @@ export function FormularioMarca({
           <Input id="marca-whatsapp" inputMode="tel" placeholder="(00) 00000-0000" value={f.valores.whatsapp} onChange={(e) => f.mudar("whatsapp")(e.target.value)} />
         </CampoRotulado>
         <CampoRotulado id="marca-instagram" rotulo="Instagram" erro={f.erros.instagram}>
-          <Input id="marca-instagram" placeholder="@matilda3d" autoCapitalize="none" value={f.valores.instagram} onChange={(e) => f.mudar("instagram")(e.target.value)} />
+          <Input id="marca-instagram" placeholder="@_matilda3D" autoCapitalize="none" value={f.valores.instagram} onChange={(e) => f.mudar("instagram")(e.target.value)} />
         </CampoRotulado>
       </div>
       <CampoRotulado id="marca-sobre" rotulo='Texto "Sobre nós"' erro={f.erros.textoSobre} dica="Aparece na página inicial e em /sobre. Use só o primeiro nome dos criadores.">

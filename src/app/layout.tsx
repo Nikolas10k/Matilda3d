@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Fredoka } from "next/font/google";
 import "./globals.css";
 
@@ -24,6 +24,13 @@ export const metadata: Metadata = {
   },
   description:
     "Chaveiros, decoração, presentes e peças personalizadas impressas em 3D. Peça direto pelo WhatsApp.",
+  applicationName: "Matilda3D",
+  openGraph: { type: "website", locale: "pt_BR", siteName: "Matilda3D" },
+  appleWebApp: { capable: true, title: "Matilda3D", statusBarStyle: "default" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FFF4EE",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

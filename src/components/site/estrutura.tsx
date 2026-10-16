@@ -49,7 +49,7 @@ function IconeInstagram({ className }: { className?: string }) {
 }
 
 export function linkInstagram(usuario: string | null) {
-  const u = (usuario || process.env.NEXT_PUBLIC_INSTAGRAM_USUARIO || "matilda3d").replace(/^@/, "");
+  const u = (usuario || process.env.NEXT_PUBLIC_INSTAGRAM_USUARIO || "_matilda3D").replace(/^@/, "");
   return { usuario: u, url: `https://instagram.com/${u}` };
 }
 
