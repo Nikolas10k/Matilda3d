@@ -27,4 +27,6 @@ pnpm dev                     # http://localhost:3000
 | `pnpm test` | Testes unitários (Vitest) |
 | `pnpm build` | Build de produção |
 
-O guia de uso para a família (registrar venda, lançar despesa, ler o dashboard) entra na Fase 8.
+Site no ar: https://matilda3d.vercel.app (painel em `/admin`).
+
+Guia de uso para a família (registrar venda, lançar despesa, ler o dashboard): [`GUIA-DA-FAMILIA.md`](GUIA-DA-FAMILIA.md).
