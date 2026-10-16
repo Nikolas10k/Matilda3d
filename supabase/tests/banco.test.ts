@@ -507,3 +507,28 @@ describe("cadastro público", () => {
     expect(rows[0]).toEqual({ papel: "membro", ativo: true });
   });
 });
+
+describe("storage", () => {
+  it("a equipe enxerga os arquivos de produtos pela API (necessário para apagar); visitante não", async () => {
+    await comoSuperusuario(db);
+    await db.query("insert into storage.objects (bucket_id, name) values ('produtos', 'p1/foto.webp')");
+
+    await como(db, "authenticated", membro);
+    expect(await valor<number>("select count(*)::int from storage.objects where bucket_id = 'produtos'")).toBe(1);
+
+    await como(db, "authenticated", semPerfil);
+    expect(await valor<number>("select count(*)::int from storage.objects where bucket_id = 'produtos'")).toBe(0);
+
+    await como(db, "anon");
+    expect(await valor<number>("select count(*)::int from storage.objects where bucket_id = 'produtos'")).toBe(0);
+  });
+
+  it("comprovantes: só a equipe lê", async () => {
+    await comoSuperusuario(db);
+    await db.query("insert into storage.objects (bucket_id, name) values ('comprovantes', 'c1.pdf')");
+    await como(db, "authenticated", outroMembro);
+    expect(await valor<number>("select count(*)::int from storage.objects where bucket_id = 'comprovantes'")).toBe(1);
+    await como(db, "anon");
+    expect(await valor<number>("select count(*)::int from storage.objects where bucket_id = 'comprovantes'")).toBe(0);
+  });
+});

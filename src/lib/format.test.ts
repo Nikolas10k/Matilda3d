@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  centavosParaTexto,
+  formatarPercentual,
   dataIsoSaoPaulo,
   formatarData,
   formatarDataHora,
@@ -115,5 +117,19 @@ describe("formatarWhatsApp", () => {
 
   it("devolve o texto original quando não reconhece o número", () => {
     expect(formatarWhatsApp("123")).toBe("123");
+  });
+});
+
+describe("centavosParaTexto e formatarPercentual", () => {
+  it("formata para os campos de dinheiro", () => {
+    expect(centavosParaTexto(1250)).toBe("12,50");
+    expect(centavosParaTexto(123456)).toBe("1.234,56");
+    expect(centavosParaTexto(null)).toBe("");
+    expect(paraCentavos(centavosParaTexto(99999))).toBe(99999);
+  });
+
+  it("formata percentuais", () => {
+    expect(formatarPercentual(0.5)).toBe("50%");
+    expect(formatarPercentual(0.4567).replace(/ /g, " ")).toBe("45,7%");
   });
 });

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ClipboardList, Package, ShoppingBag, Wallet } from "lucide-react";
 import { exigirEquipe } from "@/server/auth";
 
@@ -12,14 +14,18 @@ const ATALHOS = [
   { href: "/admin/produtos", rotulo: "Produtos", texto: "Catálogo da vitrine", icone: Package },
 ];
 
-export default async function PaginaInicioPainel() {
+async function Saudacao() {
   const usuario = await exigirEquipe();
-  const primeiroNome = usuario.nome.split(" ")[0];
+  return <h1 className="text-2xl font-bold md:text-3xl">Olá, {usuario.nome.split(" ")[0]}!</h1>;
+}
 
+export default function PaginaInicioPainel() {
   return (
     <section className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold md:text-3xl">Olá, {primeiroNome}!</h1>
+        <Suspense fallback={<Skeleton className="h-9 w-48" />}>
+          <Saudacao />
+        </Suspense>
         <p className="mt-1 text-ink-muted">
           O dashboard com entradas, saídas, saldo e lucro chega na Fase 5. Por enquanto, use os atalhos abaixo.
         </p>

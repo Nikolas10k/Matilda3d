@@ -62,6 +62,8 @@ A aplicação tem duas partes:
 - **`cacheComponents` está ativo.** Leituras de `cookies()`/sessão precisam ficar dentro de `<Suspense>`. Em vez de `export const revalidate = 60` (citado no `docs/03`), use `'use cache'` + `cacheLife` + `cacheTag`, e `revalidatePath`/`updateTag` ao salvar no painel.
 - Clientes Supabase: `src/lib/supabase/client.ts` (navegador), `server.ts` (servidor com sessão), `admin.ts` (service_role, só servidor, ignora RLS).
 - Tokens de design só em `src/app/globals.css` (Tailwind v4, sem `tailwind.config`). Ver `docs/02`.
+- **Páginas do painel com dados:** o título fica fora e a parte que busca dados vai num componente async dentro de `<Suspense>` (exigência da validação de navegação instantânea do Next 16). Ver `src/app/admin/produtos/page.tsx`.
+- O cliente Supabase do servidor chama `connection()` antes de tudo (o SDK usa `Date.now()`).
 
 ### Banco de dados
 
@@ -92,7 +94,7 @@ NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 - [x] Fase 0 — Setup (Next.js 16.4, Tailwind v4, shadcn/ui, clientes Supabase, Vitest, formatadores com testes)
 - [x] Fase 1 — Banco de dados (migrações, seed, tipos e testes no PGlite). Aplicado no Supabase `ykuldncjtcgpormoobck` (us-east-1), com os 6 produtos de exemplo. **Pendente:** aplicar `20261016000001_limite_envios.sql` e `20261016000002_ajustes_desempenho.sql` pelo SQL Editor (o conector recusa SQL com `delete`/`drop`), desativar o cadastro público no Auth e regenerar os tipos com `pnpm db:tipos`.
 - [x] Fase 2 — Autenticação e layout do painel (login, recuperação/convite via `/auth/confirmar`, "Acesso não liberado", menu lateral e barra inferior; testado com usuários reais de admin, membro e sem acesso). **Pendente:** modelos de e-mail e URLs do Auth no Supabase (docs/05) e SMTP próprio antes de convidar a família.
-- [ ] Fase 3 — Produtos e calculadora
+- [x] Fase 3 — Produtos e calculadora (CRUD com fotos em webp ≤1600px, ordem por arrastar/setas/teclado, calculadora com passo a passo e testes; produto inativo some da consulta pública). **Observação:** `docs/07` não define a fase de Configurações; a tela está marcada para a Fase 4 (o caixa precisa do saldo inicial).
 - [ ] Fase 4 — Vendas e caixa
 - [ ] Fase 5 — Dashboard
 - [ ] Fase 6 — Encomendas e clientes

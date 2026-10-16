@@ -518,6 +518,9 @@ Ajustes feitos na Fase 1 (todos cobertos por testes em `supabase/tests/banco.tes
 - **Migração 006 — Storage:** cria os 4 buckets com limite de tamanho e tipos de arquivo, e as políticas da tabela acima.
 - **Migração 007 — Limite de envios:** tabela `limites_envio` e função `consumir_limite_envio(chave, maximo, janela)`, só para o `service_role`. Guarda um hash do IP, nunca o IP (LGPD). Atende ao "3 envios por IP a cada 10 minutos" do `docs/03`, que não funcionaria em memória na Vercel.
 - **Migração 008 — Dados iniciais:** `marca` (com o texto "Sobre nós" citando Maria Clara e Tharik), `configuracoes` e as 5 categorias vão numa migração, porque também são necessários em produção. `supabase/seed.sql` fica só com os 6 produtos de exemplo (sem preço, "Sob consulta").
+- **Perfil só por convite** (`…_perfil_so_por_convite.sql`): o gatilho `criar_perfil` só cria o perfil **ativo** se o usuário foi convidado (`auth.users.invited_at`). Sem isso, com o cadastro público do Supabase ligado (padrão), qualquer pessoa poderia criar conta e ler o financeiro.
+- **Leitura do Storage pela equipe** (`…_storage_leitura_produtos.sql`): a API do Storage consulta `storage.objects` antes de apagar/listar. Os buckets `produtos` e `marca` são públicos para download, mas precisavam de política de `select` para a equipe; sem ela, apagar fotos falhava em silêncio.
+- **Fotos de produto:** cada produto guarda as fotos na pasta `produtos/{id do produto}/`; o servidor recusa caminhos de outra pasta.
 
 ## Como aplicar no projeto Supabase
 

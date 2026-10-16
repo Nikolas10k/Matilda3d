@@ -120,3 +120,22 @@ export function formatarWhatsApp(numero: string): string {
   const corte = resto.length - 4;
   return `(${ddd}) ${resto.slice(0, corte)}-${resto.slice(corte)}`;
 }
+
+const formatadorDecimal = new Intl.NumberFormat("pt-BR", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+/** Valor para campos de dinheiro, sem o "R$": 1250 → "12,50"; null → "". */
+export function centavosParaTexto(centavos: number | null | undefined): string {
+  return centavos == null ? "" : formatadorDecimal.format(centavos / 100);
+}
+
+/** 0.4567 → "45,7%". */
+export function formatarPercentual(fracao: number, casas = 1): string {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "percent",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: casas,
+  }).format(fracao);
+}
