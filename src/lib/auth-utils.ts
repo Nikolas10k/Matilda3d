@@ -24,7 +24,7 @@ export function traduzirErroAuth(mensagem: string | undefined, codigo?: string):
   const texto = `${codigo ?? ""} ${mensagem ?? ""}`.toLowerCase();
 
   if (texto.includes("invalid login credentials") || texto.includes("invalid_credentials")) {
-    return "E-mail ou senha incorretos.";
+    return "Usuário ou senha incorretos.";
   }
   if (texto.includes("email not confirmed") || texto.includes("email_not_confirmed")) {
     return "Confirme seu e-mail antes de entrar. Procure a mensagem na sua caixa de entrada.";
@@ -45,4 +45,35 @@ export function traduzirErroAuth(mensagem: string | undefined, codigo?: string):
     return "O link expirou. Peça um novo e-mail de recuperação.";
   }
   return "Não foi possível concluir agora. Tente de novo em instantes.";
+}
+
+// ——— Usuário e senha (sem e-mail) ———
+// O Supabase Auth exige um e-mail; o painel usa só "usuário". Cada usuário vira
+// <usuario>@usuarios.matilda3d.vercel.app, um endereço que nunca recebe mensagens
+// (subdomínio do projeto na Vercel, sem servidor de e-mail; ninguém de fora pode registrá-lo).
+
+export const DOMINIO_USUARIOS = "usuarios.matilda3d.vercel.app";
+
+/** 3 a 30 caracteres: letras minúsculas, números, ponto ou sublinhado; começa com letra ou número. */
+export const PADRAO_USUARIO = /^[a-z0-9][a-z0-9._]{2,29}$/;
+
+/** Minúsculas, sem acentos e sem espaços nas pontas ("Maria.Clara " → "maria.clara"). */
+export function normalizarUsuario(texto: string): string {
+  return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").trim().toLowerCase();
+}
+
+export function emailDoUsuario(usuario: string): string {
+  return `${normalizarUsuario(usuario)}@${DOMINIO_USUARIOS}`;
+}
+
+/** O login aceita usuário ou, para contas antigas, o e-mail completo. */
+export function emailParaLogin(entrada: string): string {
+  const texto = entrada.trim();
+  return texto.includes("@") ? texto.toLowerCase() : emailDoUsuario(texto);
+}
+
+/** "maria@usuarios.matilda3d.vercel.app" → "maria"; e-mail comum → null. */
+export function usuarioDoEmail(email: string | null | undefined): string | null {
+  const sufixo = `@${DOMINIO_USUARIOS}`;
+  return email?.toLowerCase().endsWith(sufixo) ? email.slice(0, -sufixo.length).toLowerCase() : null;
 }

@@ -5,8 +5,8 @@ Para Maria Clara, Tharik e Karem. Explica o dia a dia da loja no painel, sem ter
 ## Entrar
 
 1. Abra **matilda3d.vercel.app/login** no celular ou no computador.
-2. Entre com seu e-mail e senha.
-3. Esqueceu a senha? Toque em "Esqueci minha senha" e siga o e-mail que vai chegar.
+2. Entre com o **usuário** e a **senha** que a responsável criou para você (não precisa de e-mail).
+3. Esqueceu a senha? Peça para a responsável: em Configurações → Usuários ela toca em "Trocar senha" e cria uma nova.
 
 **Dica:** no celular, abra o painel no navegador e escolha "Adicionar à tela inicial". Ele passa a abrir como um aplicativo.
 
@@ -75,7 +75,7 @@ Em **Relatórios → Exportar planilhas** você baixa vendas, itens vendidos e c
 
 ## Só para a Karem (Configurações)
 
-- **Convidar pessoa:** dá acesso ao painel para a Maria Clara e o Tharik.
+- **Novo usuário:** cria o acesso da Maria Clara e do Tharik com um usuário (ex.: `mariaclara`) e uma senha. Depois é só passar os dois para a pessoa. Em cada usuário, "Trocar senha" cria uma senha nova se alguém esquecer.
 - **Dados da marca:** WhatsApp, Instagram e textos que aparecem no site.
 
 ## Algo deu errado?

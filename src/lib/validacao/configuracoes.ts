@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { normalizarUsuario, PADRAO_USUARIO } from "@/lib/auth-utils";
 import { dataIso, dinheiroObrigatorio, dinheiroOuZero, instagramOpcional, OBRIGATORIO, whatsappOpcional } from "./comum";
 
 const percentual = (max: number, mensagem: string) =>
@@ -36,8 +37,23 @@ export const esquemaPadroesCalculadora = z.object({
 
 export const esquemaNomeCategoria = z.string().trim().min(1, OBRIGATORIO).max(40, "Use no máximo 40 caracteres.");
 
-export const esquemaConvite = z.object({
-  email: z.string().trim().toLowerCase().min(1, OBRIGATORIO).email("Digite um e-mail válido, ex.: nome@gmail.com."),
+export const esquemaSenha = z
+  .string()
+  .min(8, "A senha precisa ter pelo menos 8 caracteres.")
+  .max(72, "Use no máximo 72 caracteres.");
+
+/** Usuário criado pelo admin: entra com "usuário" e senha, sem e-mail. */
+export const esquemaNovoUsuario = z.object({
   nome: z.string().trim().min(1, OBRIGATORIO).max(80, "Use no máximo 80 caracteres."),
+  usuario: z
+    .string()
+    .transform(normalizarUsuario)
+    .pipe(
+      z
+        .string()
+        .min(1, OBRIGATORIO)
+        .regex(PADRAO_USUARIO, "Use de 3 a 30 letras ou números, sem espaços (pode ter ponto ou _). Ex.: mariaclara"),
+    ),
+  senha: esquemaSenha,
   papel: z.enum(["admin", "membro"]),
 });

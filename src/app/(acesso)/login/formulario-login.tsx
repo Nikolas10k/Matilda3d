@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { AvisoFormulario, Campo } from "@/components/formulario/campo";
@@ -23,14 +22,15 @@ export function FormularioLogin() {
 
       <input type="hidden" name="voltar" value={params.get("voltar") ?? ""} />
       <Campo
-        id="email"
-        rotulo="E-mail"
-        type="email"
-        autoComplete="email"
-        inputMode="email"
+        id="usuario"
+        rotulo="Usuário"
+        type="text"
+        autoComplete="username"
+        autoCapitalize="none"
+        spellCheck={false}
         required
-        defaultValue={estado.valores?.email}
-        erro={estado.campos?.email}
+        defaultValue={estado.valores?.usuario}
+        erro={estado.campos?.usuario}
       />
       <Campo
         id="senha"
@@ -45,12 +45,7 @@ export function FormularioLogin() {
         {enviando ? "Entrando…" : "Entrar"}
       </Button>
 
-      <Link
-        href="/recuperar-senha"
-        className="mx-auto inline-flex min-h-11 items-center px-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
-      >
-        Esqueci minha senha
-      </Link>
+      <p className="text-center text-sm text-ink-muted">Esqueceu a senha? Peça para a responsável criar uma nova no painel.</p>
     </form>
   );
 }

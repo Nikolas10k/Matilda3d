@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath, updateTag } from "next/cache";
+import { emailDoUsuario } from "@/lib/auth-utils";
 import { gerarSlug } from "@/lib/slug";
 import { BUCKET_MARCA } from "@/lib/storage";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -8,10 +9,11 @@ import { createClient } from "@/lib/supabase/server";
 import { errosPorCampo } from "@/lib/validacao/comum";
 import {
   esquemaConfigCaixa,
-  esquemaConvite,
   esquemaMarca,
   esquemaNomeCategoria,
+  esquemaNovoUsuario,
   esquemaPadroesCalculadora,
+  esquemaSenha,
 } from "@/lib/validacao/configuracoes";
 import { ehAdmin, exigirEquipe } from "@/server/auth";
 
@@ -172,37 +174,67 @@ export async function excluirCategoria(id: string): Promise<ResultadoConfig> {
 
 // ——— Usuários ———
 
-export async function convidarUsuario(valores: unknown): Promise<ResultadoConfig> {
-  if (!(await exigirAdmin())) return SO_ADMIN;
-  const r = esquemaConvite.safeParse(valores);
-  if (!r.success) return invalido(r.error);
-
-  const site = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  let admin;
+function clienteAdmin() {
   try {
-    admin = createAdminClient();
+    return createAdminClient();
   } catch {
-    return { ok: false, erro: "Falta configurar a chave secreta do Supabase (SUPABASE_SERVICE_ROLE_KEY)." };
+    return null;
   }
+}
 
-  const { data, error } = await admin.auth.admin.inviteUserByEmail(r.data.email, {
-    data: { nome: r.data.nome },
-    redirectTo: `${site}/auth/confirmar?next=/redefinir-senha`,
+const SEM_CHAVE: ResultadoConfig = { ok: false, erro: "Falta configurar a chave secreta do Supabase (SUPABASE_SERVICE_ROLE_KEY)." };
+
+/**
+ * O admin cria o acesso com usuário e senha (sem convite por e-mail). Por trás,
+ * o Supabase recebe um e-mail interno que nunca recebe mensagens (ver auth-utils).
+ */
+export async function criarUsuario(valores: unknown): Promise<ResultadoConfig> {
+  if (!(await exigirAdmin())) return SO_ADMIN;
+  const r = esquemaNovoUsuario.safeParse(valores);
+  if (!r.success) return invalido(r.error);
+  const admin = clienteAdmin();
+  if (!admin) return SEM_CHAVE;
+
+  const { data, error } = await admin.auth.admin.createUser({
+    email: emailDoUsuario(r.data.usuario),
+    password: r.data.senha,
+    email_confirm: true,
+    user_metadata: { nome: r.data.nome, usuario: r.data.usuario },
   });
   if (error || !data.user) {
     const msg = error?.message.toLowerCase() ?? "";
-    if (msg.includes("already") || error?.code === "email_exists") {
-      return { ok: false, erro: "Esse e-mail já tem acesso ao painel.", campos: { email: "Esse e-mail já tem acesso ao painel." } };
+    if (error?.code === "email_exists" || msg.includes("already")) {
+      return { ok: false, erro: "Esse usuário já existe. Escolha outro.", campos: { usuario: "Esse usuário já existe. Escolha outro." } };
     }
-    if (msg.includes("rate limit")) {
-      return { ok: false, erro: "Limite de e-mails atingido. Configure um SMTP próprio no Supabase ou tente mais tarde." };
+    if (error?.code === "weak_password" || msg.includes("password")) {
+      return { ok: false, erro: "Essa senha é fraca.", campos: { senha: "Use pelo menos 8 caracteres, misturando letras e números." } };
     }
-    return { ok: false, erro: "Não foi possível enviar o convite. Confira o envio de e-mails (SMTP) no Supabase." };
+    return { ok: false, erro: "Não foi possível criar o usuário. Tente de novo." };
   }
 
-  // O gatilho criou o perfil ativo (convite); aqui só define o papel.
-  await admin.from("perfis").update({ papel: r.data.papel, nome: r.data.nome }).eq("id", data.user.id);
+  // O gatilho cria o perfil inativo (não veio de convite); aqui ele é liberado com o papel escolhido.
+  const { error: erroPerfil } = await admin
+    .from("perfis")
+    .update({ papel: r.data.papel, nome: r.data.nome, ativo: true })
+    .eq("id", data.user.id);
   revalidatePath("/admin/configuracoes");
+  if (erroPerfil) return { ok: false, erro: "Usuário criado, mas não foi possível liberar o acesso. Ative-o na lista abaixo." };
+  return { ok: true };
+}
+
+/** O admin define uma nova senha para qualquer pessoa da equipe (inclusive a própria). */
+export async function definirSenhaUsuario(id: string, senha: string): Promise<ResultadoConfig> {
+  if (!(await exigirAdmin())) return SO_ADMIN;
+  const r = esquemaSenha.safeParse(senha);
+  if (!r.success) return { ok: false, erro: r.error.issues[0].message, campos: { senha: r.error.issues[0].message } };
+  const admin = clienteAdmin();
+  if (!admin) return SEM_CHAVE;
+
+  const { error } = await admin.auth.admin.updateUserById(id, { password: r.data });
+  if (error) {
+    const fraca = error.code === "weak_password";
+    return { ok: false, erro: fraca ? "Essa senha é fraca. Misture letras e números." : "Não foi possível trocar a senha." };
+  }
   return { ok: true };
 }
 

@@ -109,4 +109,4 @@ Lista com busca. Colunas: nome, WhatsApp, Instagram, nº de compras, total gasto
 - Saldo inicial do caixa e data de início.
 - Padrões da calculadora: preço do kg de filamento, custo de energia por hora, desgaste por hora, embalagem, taxa de falhas, margem.
 - Categorias de produto (criar, renomear, ordenar).
-- Usuários: convidar por e-mail, definir perfil (admin/membro), desativar.
+- Usuários: o admin cria o acesso com **usuário e senha** (sem e-mail), define o perfil (admin/membro), troca a senha de qualquer pessoa e desativa. *(Mudança de 18/10/2026: antes era convite por e-mail. Por trás, o Supabase Auth recebe o e-mail interno `<usuario>@usuarios.matilda3d.vercel.app`, que nunca recebe mensagens; ver `src/lib/auth-utils.ts`.)*

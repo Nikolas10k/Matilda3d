@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { caminhoSeguroPainel, traduzirErroAuth } from "@/lib/auth-utils";
+import { caminhoSeguroPainel, emailParaLogin, traduzirErroAuth } from "@/lib/auth-utils";
 import { createClient } from "@/lib/supabase/server";
 
 export type EstadoFormulario = {
@@ -25,19 +25,20 @@ function errosDosCampos(erro: z.ZodError): EstadoFormulario["campos"] {
   return campos;
 }
 
+// Entra com o usuário criado pelo admin; contas antigas ainda podem usar o e-mail completo.
 const esquemaLogin = z.object({
-  email,
+  usuario: z.string().trim().min(1, MSG_OBRIGATORIO),
   senha: z.string().min(1, MSG_OBRIGATORIO),
 });
 
 export async function entrar(_estado: EstadoFormulario, formData: FormData): Promise<EstadoFormulario> {
-  const valores = { email: String(formData.get("email") ?? "") };
-  const dados = esquemaLogin.safeParse({ email: formData.get("email"), senha: formData.get("senha") });
+  const valores = { usuario: String(formData.get("usuario") ?? "") };
+  const dados = esquemaLogin.safeParse({ usuario: formData.get("usuario"), senha: formData.get("senha") });
   if (!dados.success) return { campos: errosDosCampos(dados.error), valores };
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({
-    email: dados.data.email,
+    email: emailParaLogin(dados.data.usuario),
     password: dados.data.senha,
   });
   if (error) return { erro: traduzirErroAuth(error.message, error.code), valores };

@@ -1,4 +1,5 @@
 import "server-only";
+import { usuarioDoEmail } from "@/lib/auth-utils";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
@@ -27,33 +28,32 @@ export async function obterConfiguracoesCompletas() {
 export type UsuarioDaEquipe = {
   id: string;
   nome: string;
-  email: string;
+  /** Como a pessoa entra: o usuário (contas novas) ou o e-mail (contas antigas). */
+  login: string;
   papel: "admin" | "membro";
   ativo: boolean;
-  pendente: boolean;
 };
 
-/** Perfis da equipe com e-mail (o e-mail fica no Auth, lido com a service_role). */
+/** Perfis da equipe com o login (fica no Auth, lido com a service_role). */
 export async function listarUsuarios(): Promise<UsuarioDaEquipe[]> {
   const supabase = await createClient();
   const { data: perfis } = await supabase.from("perfis").select("id, nome, papel, ativo").order("nome");
 
-  const emails = new Map<string, { email: string; pendente: boolean }>();
+  const logins = new Map<string, string>();
   try {
     const { data } = await createAdminClient().auth.admin.listUsers({ perPage: 200 });
     for (const u of data.users) {
-      emails.set(u.id, { email: u.email ?? "", pendente: Boolean(u.invited_at && !u.last_sign_in_at) });
+      logins.set(u.id, usuarioDoEmail(u.email) ?? u.email ?? "");
     }
   } catch {
-    // Sem service_role configurada, a lista aparece sem e-mails.
+    // Sem service_role configurada, a lista aparece sem o login.
   }
 
   return (perfis ?? []).map((p) => ({
     id: p.id,
     nome: p.nome,
-    email: emails.get(p.id)?.email ?? "",
+    login: logins.get(p.id) ?? "",
     papel: p.papel === "admin" ? "admin" : "membro",
     ativo: p.ativo,
-    pendente: emails.get(p.id)?.pendente ?? false,
   }));
 }
