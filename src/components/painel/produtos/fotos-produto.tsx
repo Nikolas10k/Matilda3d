@@ -105,7 +105,7 @@ export function FotosProduto({ produtoId, fotos, aoMudar, erro }: Props) {
             {Array.from({ length: enviando }, (_, i) => (
               <li
                 key={`enviando-${i}`}
-                className="flex aspect-[4/3] items-center justify-center rounded-xl border border-dashed border-border bg-surface-alt text-sm text-ink-muted"
+                className="flex aspect-[4/3] items-center justify-center rounded-xl border border-dashed border-border bg-surface text-sm text-ink-muted"
               >
                 <Loader2 className="mr-2 size-4 animate-spin" aria-hidden="true" />
                 Enviando…
@@ -115,7 +115,7 @@ export function FotosProduto({ produtoId, fotos, aoMudar, erro }: Props) {
               <li>
                 <label
                   htmlFor={inputId}
-                  className="flex aspect-[4/3] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-input bg-white text-sm font-bold text-ink-muted transition hover:border-brand hover:text-brand-strong focus-within:border-ring"
+                  className="flex aspect-[4/3] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-input bg-white text-sm font-bold text-ink-muted transition hover:border-ink hover:text-ink-soft focus-within:border-ring"
                 >
                   <ImagePlus className="size-7" aria-hidden="true" />
                   Adicionar fotos
@@ -161,8 +161,8 @@ function FotoOrdenavel({
       style={{ transform: CSS.Transform.toString(transform), transition }}
       className={cn(
         "relative overflow-hidden rounded-xl border bg-white",
-        capa ? "border-brand" : "border-border",
-        isDragging && "z-10 shadow-lg ring-2 ring-brand",
+        capa ? "border-ink" : "border-border",
+        isDragging && "z-10 shadow-lg ring-2 ring-ink",
       )}
     >
       <div
@@ -191,7 +191,7 @@ function FotoOrdenavel({
             onClick={() => aoMover(indice, indice - 1)}
             disabled={indice === 0}
             aria-label="Mover para antes"
-            className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface-alt disabled:opacity-30"
+            className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface disabled:opacity-30"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
           </button>
@@ -200,7 +200,7 @@ function FotoOrdenavel({
             onClick={() => aoMover(indice, indice + 1)}
             disabled={indice === total - 1}
             aria-label="Mover para depois"
-            className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface-alt disabled:opacity-30"
+            className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface disabled:opacity-30"
           >
             <ArrowRight className="size-4" aria-hidden="true" />
           </button>

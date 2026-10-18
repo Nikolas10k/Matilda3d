@@ -33,7 +33,7 @@ export function FormularioRecuperacao() {
       )}
       <Link
         href="/login"
-        className="mx-auto inline-flex min-h-11 items-center px-2 text-sm font-medium text-brand-strong underline-offset-4 hover:underline"
+        className="mx-auto inline-flex min-h-11 items-center px-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
       >
         Voltar para o login
       </Link>

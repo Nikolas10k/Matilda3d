@@ -49,7 +49,7 @@ export function SeletorCliente({ valor, aoMudar, erros, permitirNovo = true }: P
 
   return (
     <div className="flex flex-col gap-3">
-      <div role="radiogroup" aria-label="Cliente da venda" className={cn("grid gap-1 rounded-full bg-surface-alt p-1", permitirNovo ? "grid-cols-3" : "grid-cols-2")}>
+      <div role="radiogroup" aria-label="Cliente da venda" className={cn("grid gap-1 rounded-full bg-surface p-1", permitirNovo ? "grid-cols-3" : "grid-cols-2")}>
         {abas.map(({ modo, rotulo, icone: Icone }) => (
           <button
             key={modo}
@@ -74,7 +74,7 @@ export function SeletorCliente({ valor, aoMudar, erros, permitirNovo = true }: P
 
       {valor.modo === "existente" &&
         (valor.id ? (
-          <div className="flex items-center justify-between gap-3 rounded-xl border border-brand/40 bg-brand-soft px-4 py-3">
+          <div className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface-strong px-4 py-3">
             <span>
               <span className="block font-bold">{valor.nome}</span>
               {valor.whatsapp && <span className="block text-sm text-ink-muted">{formatarWhatsApp(valor.whatsapp)}</span>}
@@ -83,7 +83,7 @@ export function SeletorCliente({ valor, aoMudar, erros, permitirNovo = true }: P
               type="button"
               onClick={() => aoMudar({ modo: "existente", id: "" })}
               aria-label="Trocar cliente"
-              className="flex size-11 items-center justify-center rounded-full hover:bg-brand/15"
+              className="flex size-11 items-center justify-center rounded-full hover:bg-ink/10"
             >
               <X className="size-4" aria-hidden="true" />
             </button>
@@ -114,7 +114,7 @@ export function SeletorCliente({ valor, aoMudar, erros, permitirNovo = true }: P
                     <button
                       type="button"
                       onClick={() => aoMudar({ modo: "novo", nome: termo, whatsapp: "", instagram: "" })}
-                      className="min-h-11 font-bold text-brand-strong"
+                      className="min-h-11 font-bold text-ink"
                     >
                       Cadastrar &quot;{termo}&quot;
                     </button>
@@ -126,7 +126,7 @@ export function SeletorCliente({ valor, aoMudar, erros, permitirNovo = true }: P
                       <button
                         type="button"
                         onClick={() => aoMudar({ modo: "existente", id: c.id, nome: c.nome, whatsapp: c.whatsapp })}
-                        className="flex min-h-12 w-full flex-col items-start justify-center px-4 py-2 text-left hover:bg-surface-alt"
+                        className="flex min-h-12 w-full flex-col items-start justify-center px-4 py-2 text-left hover:bg-surface"
                       >
                         <span className="font-bold">{c.nome}</span>
                         {c.whatsapp && <span className="text-sm text-ink-muted">{formatarWhatsApp(c.whatsapp)}</span>}

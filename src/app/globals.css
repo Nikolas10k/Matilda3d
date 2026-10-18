@@ -3,35 +3,34 @@
 @import "shadcn/tailwind.css";
 
 /*
- * Tokens da marca Matilda3D (provisórios, ver docs/02-marca-e-design.md).
- * Para trocar a identidade visual, altere apenas os blocos "Paleta da marca",
- * "Forma" e "Movimento" abaixo. O restante deriva destes valores.
+ * Tokens da marca Matilda3D — identidade aprovada, conceito B "Casinhas"
+ * (ver docs/02-marca-e-design.md). Paleta 100% neutra, sem cor de destaque.
  *
  * Nomes no Tailwind (renomeados para não conflitar com os tokens do shadcn):
- *   --ink          → ink            --accent        → brand
- *   --muted        → ink-muted      --accent-strong → brand-strong
- *   --surface-alt  → surface-alt    --accent-soft   → brand-soft
- *   --whatsapp, --success, --danger, --warning → mesmos nomes
+ *   Grafite  --ink       → ink            Névoa   --surface        → surface
+ *   —        --ink-soft  → ink-soft       Pérola  --surface-strong → surface-strong
+ *   Pedra    --muted     → ink-muted      Concreto --line          → line (nunca em texto)
+ *   --success, --danger, --warning (só no painel) → mesmos nomes
  */
 
 :root {
   /* Paleta da marca */
-  --m3d-ink: #1e1b33;
-  --m3d-muted: #4a4660;
-  --m3d-accent: #ff6a3d;
-  --m3d-accent-strong: #c2410c;
-  --m3d-accent-soft: #fff4ee;
-  --m3d-whatsapp: #1f7a47;
-  --m3d-surface-alt: #f6f4fb;
-  --m3d-border: #ece9f3;
-  --m3d-success: #15803d;
-  --m3d-danger: #b91c1c;
-  --m3d-warning: #b45309;
-  --m3d-white: #ffffff;
+  --m3d-white: #ffffff; /* Branco */
+  --m3d-surface: #f4f3f1; /* Névoa */
+  --m3d-surface-strong: #e6e4e0; /* Pérola */
+  --m3d-line: #a8a5a0; /* Concreto */
+  --m3d-muted: #6b6964; /* Pedra */
+  --m3d-ink-soft: #4a4946;
+  --m3d-ink: #2f2f31; /* Grafite */
+
+  /* Cores de estado (somente no painel) */
+  --m3d-success: #3f6b4e;
+  --m3d-danger: #9b3b3b;
+  --m3d-warning: #8a6a2f;
 
   /* Forma */
   --radius: 0.75rem; /* inputs: 12px; botões usam rounded-full */
-  --m3d-radius-card: 22px;
+  --m3d-radius-card: 20px;
 
   /* Movimento (entradas ao rolar a página, ver docs/02) */
   --m3d-reveal-duration: 600ms;
@@ -48,47 +47,46 @@
   --popover-foreground: var(--m3d-ink);
   --primary: var(--m3d-ink);
   --primary-foreground: var(--m3d-white);
-  --secondary: var(--m3d-surface-alt);
+  --secondary: var(--m3d-surface);
   --secondary-foreground: var(--m3d-ink);
-  --muted: var(--m3d-surface-alt);
+  --muted: var(--m3d-surface);
   --muted-foreground: var(--m3d-muted);
-  --accent: var(--m3d-accent-soft);
+  --accent: var(--m3d-surface-strong);
   --accent-foreground: var(--m3d-ink);
   --destructive: var(--m3d-danger);
-  --border: var(--m3d-border);
-  --input: #d9d5e6;
-  --ring: var(--m3d-accent-strong);
+  --border: var(--m3d-surface-strong);
+  --input: #cfccc6; /* um tom acima da Pérola: o campo precisa aparecer sobre o branco */
+  --ring: var(--m3d-ink);
   --chart-1: var(--m3d-success);
   --chart-2: var(--m3d-danger);
-  --chart-3: var(--m3d-accent);
+  --chart-3: var(--m3d-muted);
   --chart-4: var(--m3d-ink);
   --chart-5: var(--m3d-warning);
   --sidebar: var(--m3d-white);
   --sidebar-foreground: var(--m3d-ink);
   --sidebar-primary: var(--m3d-ink);
   --sidebar-primary-foreground: var(--m3d-white);
-  --sidebar-accent: var(--m3d-accent-soft);
+  --sidebar-accent: var(--m3d-surface-strong);
   --sidebar-accent-foreground: var(--m3d-ink);
-  --sidebar-border: var(--m3d-border);
-  --sidebar-ring: var(--m3d-accent-strong);
+  --sidebar-border: var(--m3d-surface-strong);
+  --sidebar-ring: var(--m3d-ink);
 }
 
 @theme inline {
   /* Cores da marca */
   --color-ink: var(--m3d-ink);
+  --color-ink-soft: var(--m3d-ink-soft);
   --color-ink-muted: var(--m3d-muted);
-  --color-brand: var(--m3d-accent);
-  --color-brand-strong: var(--m3d-accent-strong);
-  --color-brand-soft: var(--m3d-accent-soft);
-  --color-whatsapp: var(--m3d-whatsapp);
-  --color-surface-alt: var(--m3d-surface-alt);
+  --color-surface: var(--m3d-surface);
+  --color-surface-strong: var(--m3d-surface-strong);
+  --color-line: var(--m3d-line);
   --color-success: var(--m3d-success);
   --color-danger: var(--m3d-danger);
   --color-warning: var(--m3d-warning);
 
   /* Fontes (carregadas via next/font em src/app/layout.tsx) */
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-fredoka), var(--font-dm-sans), ui-sans-serif, sans-serif;
+  --font-heading: var(--font-jost), var(--font-dm-sans), ui-sans-serif, sans-serif;
 
   /* Movimento */
   --ease-out-soft: var(--m3d-ease-out);
@@ -160,6 +158,15 @@
 /* Números financeiros no painel */
 @utility tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* Label da marca (docs/02): Jost 500, maiúsculas, bem espaçado. */
+@utility rotulo {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
 }
 
 /*

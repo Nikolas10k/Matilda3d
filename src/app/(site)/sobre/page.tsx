@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Layers, Lightbulb, PackageCheck } from "lucide-react";
-import { Faixa, IlustracaoImpressora, TituloSecao } from "@/components/site/blocos";
+import { Logo } from "@/components/marca/logo";
+import { botaoContorno, botaoPrimario, Faixa, TituloSecao } from "@/components/site/blocos";
 import { IconeInstagram, linkInstagram } from "@/components/site/estrutura";
 import { BUCKET_MARCA, urlPublica } from "@/lib/storage";
 import { obterMarca } from "@/server/publico";
@@ -26,50 +27,43 @@ export default async function PaginaSobre() {
 
   return (
     <>
-      <Faixa className="bg-ink text-white" conteudo="flex flex-wrap items-center gap-12">
-        <div className="relative flex aspect-[4/3] min-w-0 max-w-[480px] flex-[1_1_320px] items-center justify-center overflow-hidden rounded-3xl bg-[#2C2848]">
+      <Faixa className="bg-surface" conteudo="flex flex-wrap items-center gap-12">
+        <div className="relative flex aspect-[4/3] min-w-0 max-w-[480px] flex-[1_1_320px] items-center justify-center overflow-hidden rounded-card bg-surface-strong">
           {marca.fotoCriadores ? (
             <Image src={urlPublica(BUCKET_MARCA, marca.fotoCriadores)} alt="Os criadores da Matilda3D" fill priority sizes="(min-width: 768px) 480px, 92vw" className="object-cover" />
           ) : (
-            <IlustracaoImpressora className="h-auto w-1/2" />
+            <Logo variante="principal" altura={180} priority className="h-auto w-[56%]" />
           )}
         </div>
         <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-4">
-          <span className="text-sm font-bold tracking-wide text-[#FFB48F] uppercase">Sobre nós</span>
-          <h1 className="text-[clamp(34px,7vw,48px)] leading-tight font-bold tracking-tight">Jovens criadores, ideias grandes.</h1>
-          <p className="text-lg leading-relaxed text-[#D9D5E6]">
+          <span className="rotulo text-ink-muted">Sobre nós</span>
+          <h1 className="text-[clamp(36px,7vw,52px)] leading-tight font-light">Jovens criadores, peças feitas com cuidado.</h1>
+          <p className="text-lg leading-relaxed text-ink-soft">
             {marca.textoSobre ??
               "A Matilda3D nasceu da curiosidade por tecnologia e criatividade. Cada peça é modelada, impressa e acabada à mão, em casa, com atenção a cada detalhe."}
           </p>
         </div>
       </Faixa>
 
-      <Faixa conteudo="flex flex-col gap-9">
-        <TituloSecao centro subtitulo="Do jeito que a gente trabalha, cada peça é única.">
+      <Faixa className="bg-white" conteudo="flex flex-col gap-10">
+        <TituloSecao rotulo="Do nosso jeito" centro subtitulo="Do jeito que a gente trabalha, cada peça é única.">
           Como nasce uma peça
         </TituloSecao>
         <ol className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
           {VALORES.map((v, i) => (
-            <Revelar as="li" key={v.titulo} atraso={i} className="flex flex-col gap-3 rounded-card border border-border bg-white p-7">
-              <span className="flex size-12 items-center justify-center rounded-[14px] bg-brand-soft text-brand-strong">
-                <v.icone className="size-6" aria-hidden="true" />
-              </span>
-              <h2 className="text-[22px] font-semibold">{v.titulo}</h2>
-              <p className="leading-relaxed text-ink-muted">{v.texto}</p>
+            <Revelar as="li" key={v.titulo} atraso={i} className="flex flex-col gap-4 rounded-card border border-border bg-surface p-7">
+              <v.icone className="size-7 text-ink-muted" strokeWidth={1.5} aria-hidden="true" />
+              <h2 className="text-[22px] font-normal">{v.titulo}</h2>
+              <p className="leading-relaxed text-ink-soft">{v.texto}</p>
             </Revelar>
           ))}
         </ol>
         <Revelar as="div" className="flex flex-wrap justify-center gap-3">
-          <Link href="/produtos" className="inline-flex min-h-[52px] items-center gap-2 rounded-full bg-ink px-6 font-bold text-white hover:bg-[#2c2848]">
+          <Link href="/produtos" className={botaoPrimario}>
             Ver produtos
-            <ArrowRight className="size-4" aria-hidden="true" />
+            <ArrowRight className="size-4" strokeWidth={1.5} aria-hidden="true" />
           </Link>
-          <a
-            href={instagram.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[52px] items-center gap-2 rounded-full border-2 border-ink px-6 font-bold hover:bg-ink hover:text-white"
-          >
+          <a href={instagram.url} target="_blank" rel="noopener noreferrer" className={botaoContorno}>
             <IconeInstagram className="size-[18px]" />
             Siga @{instagram.usuario}
           </a>

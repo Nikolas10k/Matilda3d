@@ -159,8 +159,8 @@ async function Dashboard({ searchParams }: { searchParams: SearchParams }) {
                       <span className="font-bold text-ink">{formatarMoeda(c.valorCentavos)}</span> · {formatarPercentual(c.fracao, 0)}
                     </span>
                   </div>
-                  <div className="h-2.5 overflow-hidden rounded-full bg-surface-alt" aria-hidden="true">
-                    <div className="h-full rounded-full bg-[#C2410C]" style={{ width: `${Math.max(c.fracao * 100, 2)}%` }} />
+                  <div className="h-2.5 overflow-hidden rounded-full bg-surface" aria-hidden="true">
+                    <div className="h-full rounded-full bg-[#A85A32]" style={{ width: `${Math.max(c.fracao * 100, 2)}%` }} />
                   </div>
                 </li>
               ))}
@@ -172,7 +172,7 @@ async function Dashboard({ searchParams }: { searchParams: SearchParams }) {
           titulo="Encomendas que precisam de atenção"
           descricao="Novas ou com data desejada nos próximos 7 dias"
           acao={
-            <Link href="/admin/encomendas" className="inline-flex min-h-11 items-center text-sm font-medium text-brand-strong hover:underline">
+            <Link href="/admin/encomendas" className="inline-flex min-h-11 items-center text-sm font-medium text-ink hover:underline">
               Ver todas
             </Link>
           }
@@ -249,7 +249,7 @@ async function Dashboard({ searchParams }: { searchParams: SearchParams }) {
         <Secao
           titulo="Últimas vendas"
           acao={
-            <Link href="/admin/vendas" className="inline-flex min-h-11 items-center text-sm font-medium text-brand-strong hover:underline">
+            <Link href="/admin/vendas" className="inline-flex min-h-11 items-center text-sm font-medium text-ink hover:underline">
               Ver todas
             </Link>
           }
@@ -260,7 +260,7 @@ async function Dashboard({ searchParams }: { searchParams: SearchParams }) {
             <ul className="flex flex-col divide-y divide-border">
               {d.ultimasVendas.map((v) => (
                 <li key={v.id}>
-                  <Link href={`/admin/vendas/${v.id}`} className="flex items-center justify-between gap-3 py-2 text-sm hover:text-brand-strong">
+                  <Link href={`/admin/vendas/${v.id}`} className="flex items-center justify-between gap-3 py-2 text-sm hover:text-ink-soft">
                     <span className="min-w-0">
                       <span className="block truncate font-bold">
                         #{v.numero} · {v.cliente ?? "Venda avulsa"}
@@ -283,5 +283,5 @@ async function Dashboard({ searchParams }: { searchParams: SearchParams }) {
 }
 
 function Vazio({ texto }: { texto: string }) {
-  return <p className="rounded-xl bg-surface-alt px-4 py-6 text-center text-sm text-ink-muted">{texto}</p>;
+  return <p className="rounded-xl bg-surface px-4 py-6 text-center text-sm text-ink-muted">{texto}</p>;
 }

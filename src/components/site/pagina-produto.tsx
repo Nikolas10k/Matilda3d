@@ -20,7 +20,7 @@ export function Galeria({ fotos, nome }: { fotos: string[]; nome: string }) {
   }
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-border bg-surface-alt">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-border bg-surface">
         <Image
           key={fotos[atual]}
           src={urlFotoProduto(fotos[atual])}
@@ -70,7 +70,7 @@ export function PedidoProduto({
     <div className="flex flex-col gap-5">
       {produto.cores.length > 0 && (
         <fieldset className="flex flex-col gap-2">
-          <legend className="mb-2 text-sm font-bold">
+          <legend className="mb-2 text-sm font-medium">
             Cor{cor ? `: ${cor}` : " (escolha uma, se quiser)"}
           </legend>
           <div className="flex flex-wrap gap-2">
@@ -78,7 +78,7 @@ export function PedidoProduto({
               <label
                 key={c}
                 className={cn(
-                  "inline-flex min-h-11 cursor-pointer items-center rounded-full border px-4 text-sm font-bold transition-colors has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/50",
+                  "inline-flex min-h-11 cursor-pointer items-center rounded-full border px-4 text-sm font-medium transition-colors has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/50",
                   cor === c ? "border-ink bg-ink text-white" : "border-input bg-white hover:border-ink",
                 )}
               >

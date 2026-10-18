@@ -40,7 +40,7 @@ export default function PaginaProduto({ params }: PageProps<"/produtos/[slug]">)
   return (
     <div className="mx-auto max-w-[1180px] px-4 py-8 md:px-6 md:py-12">
       <Link href="/produtos" className="mb-4 inline-flex min-h-11 items-center gap-1 text-sm font-medium text-ink-muted hover:text-ink">
-        <ArrowLeft className="size-4" aria-hidden="true" />
+        <ArrowLeft className="size-4" strokeWidth={1.5} aria-hidden="true" />
         Voltar para a vitrine
       </Link>
       <Suspense fallback={<ProdutoCarregando />}>
@@ -97,13 +97,13 @@ async function Produto({ params }: { params: Params }) {
         {produto.categoria && (
           <Link
             href={`/produtos?categoria=${produto.categoria.slug}`}
-            className="self-start rounded-full bg-brand-soft px-3 py-1 text-sm font-bold text-[#9A3412] hover:underline"
+            className="self-start rounded-full border border-border bg-surface px-3 py-1 text-sm font-medium text-ink-muted hover:underline"
           >
             {produto.categoria.nome}
           </Link>
         )}
-        <h1 className="text-[clamp(32px,6vw,44px)] leading-tight font-bold tracking-tight">{produto.nome}</h1>
-        <p className="font-heading text-3xl font-semibold">{precoTexto(produto.precoCentavos)}</p>
+        <h1 className="text-[clamp(32px,6vw,44px)] leading-tight font-light">{produto.nome}</h1>
+        <p className="text-3xl font-medium">{precoTexto(produto.precoCentavos)}</p>
         {produto.descricaoCurta && <p className="text-lg text-ink-muted">{produto.descricaoCurta}</p>}
         <PedidoProduto
           produto={{ id: produto.id, nome: produto.nome, slug: produto.slug, precoCentavos: produto.precoCentavos, cores: produto.cores }}
@@ -111,7 +111,7 @@ async function Produto({ params }: { params: Params }) {
         />
         {produto.descricao && (
           <div className="border-t border-border pt-5">
-            <h2 className="mb-2 text-xl font-bold">Sobre a peça</h2>
+            <h2 className="mb-2 text-xl font-medium">Sobre a peça</h2>
             <p className="whitespace-pre-line leading-relaxed text-ink-muted">{produto.descricao}</p>
           </div>
         )}

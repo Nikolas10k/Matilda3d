@@ -155,7 +155,7 @@ export function FormularioLancamento({ aberto, aoFechar, usuarioId, inicial }: P
                   </button>
                 </div>
               ) : (
-                <label className="flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-input text-sm font-bold text-ink-muted hover:border-brand hover:text-brand-strong focus-within:border-ring">
+                <label className="flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-input text-sm font-bold text-ink-muted hover:border-ink hover:text-ink-soft focus-within:border-ring">
                   <Paperclip className="size-4" aria-hidden="true" />
                   {enviandoArquivo ? "Enviando…" : "Anexar foto ou PDF"}
                   <input

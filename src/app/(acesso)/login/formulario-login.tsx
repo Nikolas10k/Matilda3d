@@ -47,7 +47,7 @@ export function FormularioLogin() {
 
       <Link
         href="/recuperar-senha"
-        className="mx-auto inline-flex min-h-11 items-center px-2 text-sm font-medium text-brand-strong underline-offset-4 hover:underline"
+        className="mx-auto inline-flex min-h-11 items-center px-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
       >
         Esqueci minha senha
       </Link>

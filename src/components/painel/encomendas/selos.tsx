@@ -4,13 +4,13 @@ import { formatarData } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const COR_STATUS: Record<StatusEncomenda, string> = {
-  nova: "bg-brand-soft text-brand-strong",
-  em_conversa: "bg-surface-alt text-ink",
-  orcada: "bg-surface-alt text-ink",
+  nova: "bg-surface-strong text-ink",
+  em_conversa: "bg-surface text-ink",
+  orcada: "bg-surface text-ink",
   aprovada: "bg-success/10 text-success",
   em_producao: "bg-warning/10 text-warning",
   pronta: "bg-success/10 text-success",
-  entregue: "bg-surface-alt text-ink-muted",
+  entregue: "bg-surface text-ink-muted",
   cancelada: "bg-danger/10 text-danger",
 };
 

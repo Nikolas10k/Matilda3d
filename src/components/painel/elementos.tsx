@@ -33,7 +33,7 @@ export function CartaoIndicador({
     neutro: "text-ink",
     positivo: "text-success",
     negativo: "text-danger",
-    destaque: "text-brand-strong",
+    destaque: "text-ink",
   };
   return (
     <div className="flex flex-col gap-1 rounded-card border border-border bg-white p-4">

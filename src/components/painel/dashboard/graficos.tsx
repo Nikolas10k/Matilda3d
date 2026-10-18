@@ -16,14 +16,15 @@ import type { NameType, ValueType } from "recharts/types/component/DefaultToolti
 import type { LinhaMensal } from "@/lib/dashboard";
 import { formatarMoeda } from "@/lib/format";
 
-// Cores dos gráficos (validadas com o validador de paleta da skill dataviz:
-// par entradas/saídas passa no teste de daltonismo; ver docs/02, "Gráficos").
+// Cores dos gráficos (validadas com o validador de paleta da skill dataviz, sobre
+// Branco e Névoa: o par entradas/saídas passa no teste de daltonismo; ver docs/02,
+// "Gráficos"). O par verde/vermelho das cores de estado falha e não é usado aqui.
 const COR = {
-  entradas: "#1F7A47",
-  saidas: "#C2410C",
-  saldo: "#1E1B33",
-  grade: "#ECE9F3",
-  texto: "#4A4660",
+  entradas: "#3366A3",
+  saidas: "#A85A32",
+  saldo: "#2F2F31",
+  grade: "#E6E4E0",
+  texto: "#6B6964",
   superficie: "#FFFFFF",
 };
 
@@ -72,7 +73,7 @@ export function GraficoEntradasSaidas({ meses }: { meses: LinhaMensal[] }) {
             <CartesianGrid vertical={false} stroke={COR.grade} />
             <XAxis dataKey="rotulo" {...eixo} />
             <YAxis tickFormatter={eixoReais} {...eixo} axisLine={false} width={44} />
-            <Tooltip content={Dica} cursor={{ fill: "#F6F4FB" }} />
+            <Tooltip content={Dica} cursor={{ fill: "#F4F3F1" }} />
             <Bar dataKey="entradasCentavos" name="Entradas" fill={COR.entradas} radius={[4, 4, 0, 0]} maxBarSize={24} isAnimationActive={false} />
             <Bar dataKey="saidasCentavos" name="Saídas" fill={COR.saidas} radius={[4, 4, 0, 0]} maxBarSize={24} isAnimationActive={false} />
           </BarChart>
@@ -149,7 +150,7 @@ function TabelaMeses({
 }) {
   return (
     <details className="group text-sm">
-      <summary className="inline-flex min-h-11 cursor-pointer items-center font-medium text-brand-strong">Ver em tabela</summary>
+      <summary className="inline-flex min-h-11 cursor-pointer items-center font-medium text-ink">Ver em tabela</summary>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className="text-left text-ink-muted">

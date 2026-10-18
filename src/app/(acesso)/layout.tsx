@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 // Layout das telas de acesso ao painel (login, recuperação de senha, aviso).
 export default function LayoutAcesso({ children }: LayoutProps<"/">) {
   return (
-    <main className="flex min-h-dvh flex-1 flex-col items-center justify-center bg-brand-soft px-4 py-10">
-      <Link href="/" className="mb-8 rounded-full" aria-label="Matilda3D, voltar ao site">
-        <Logo tamanho={44} />
+    <main className="flex min-h-dvh flex-1 flex-col items-center justify-center bg-surface px-4 py-10">
+      <Link href="/" className="mb-8 rounded-lg" aria-label="Matilda3D, voltar ao site">
+        <Logo variante="principal" altura={120} priority />
       </Link>
-      <div className="w-full max-w-sm rounded-card border border-[#ffd3bf] bg-white p-6 shadow-sm sm:p-8">
+      <div className="w-full max-w-sm rounded-card border border-border bg-white p-6 shadow-[0_1px_2px_rgb(47_47_49/0.06)] sm:p-8">
         {children}
       </div>
     </main>

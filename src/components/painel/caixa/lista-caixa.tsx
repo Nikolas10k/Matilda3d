@@ -108,7 +108,7 @@ export function ListaCaixa({ lancamentos, usuarioId }: { lancamentos: Lancamento
                 <div className="min-w-0">
                   <p className="font-bold">
                     {l.vendaId ? (
-                      <Link href={`/admin/vendas/${l.vendaId}`} className="hover:text-brand-strong hover:underline">
+                      <Link href={`/admin/vendas/${l.vendaId}`} className="hover:text-ink-soft hover:underline">
                         {l.descricao}
                       </Link>
                     ) : (
@@ -129,7 +129,7 @@ export function ListaCaixa({ lancamentos, usuarioId }: { lancamentos: Lancamento
                       type="button"
                       onClick={() => verComprovante(l.comprovante as string)}
                       aria-label="Ver comprovante"
-                      className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface-alt"
+                      className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface"
                     >
                       <FileText className="size-4" aria-hidden="true" />
                     </button>
@@ -150,7 +150,7 @@ export function ListaCaixa({ lancamentos, usuarioId }: { lancamentos: Lancamento
                         })
                       }
                       aria-label={`Editar ${l.descricao}`}
-                      className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface-alt"
+                      className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface"
                     >
                       <Pencil className="size-4" aria-hidden="true" />
                     </button>

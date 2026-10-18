@@ -117,7 +117,7 @@ async function ListaProdutos({ searchParams }: { searchParams: PageProps<"/admin
           <Box className="size-10 text-ink-muted" aria-hidden="true" />
           <p className="font-bold">{filtrando ? "Nenhum produto com esses filtros." : "Nenhum produto cadastrado ainda."}</p>
           {filtrando ? (
-            <Link href="/admin/produtos" className="text-sm font-medium text-brand-strong underline-offset-4 hover:underline">
+            <Link href="/admin/produtos" className="text-sm font-medium text-ink underline-offset-4 hover:underline">
               Limpar filtros
             </Link>
           ) : (
@@ -169,12 +169,12 @@ async function ListaProdutos({ searchParams }: { searchParams: PageProps<"/admin
               </thead>
               <tbody>
                 {produtos.map((p) => (
-                  <tr key={p.id} className="border-b border-border last:border-0 hover:bg-surface-alt/60">
+                  <tr key={p.id} className="border-b border-border last:border-0 hover:bg-surface/60">
                     <td className="px-4 py-2">
                       <Miniatura produto={p} className="size-12" />
                     </td>
                     <td className="px-4 py-2">
-                      <Link href={`/admin/produtos/${p.id}`} className="font-bold hover:text-brand-strong hover:underline">
+                      <Link href={`/admin/produtos/${p.id}`} className="font-bold hover:text-ink-soft hover:underline">
                         {p.nome}
                       </Link>
                     </td>
@@ -199,11 +199,11 @@ async function ListaProdutos({ searchParams }: { searchParams: PageProps<"/admin
 
 function Miniatura({ produto, className }: { produto: ProdutoNaLista; className?: string }) {
   return (
-    <span className={cn("relative block shrink-0 overflow-hidden rounded-xl bg-brand-soft", className)}>
+    <span className={cn("relative block shrink-0 overflow-hidden rounded-xl bg-surface-strong", className)}>
       {produto.capa ? (
         <Image src={urlFotoProduto(produto.capa)} alt="" fill sizes="80px" className="object-cover" />
       ) : (
-        <Box className="absolute inset-0 m-auto size-6 text-brand-strong/50" aria-hidden="true" />
+        <Box className="absolute inset-0 m-auto size-6 text-line" aria-hidden="true" />
       )}
     </span>
   );
@@ -215,13 +215,13 @@ function Selos({ produto }: { produto: ProdutoNaLista }) {
       <span
         className={cn(
           "rounded-full px-2 py-0.5 text-xs font-bold",
-          produto.ativo ? "bg-success/10 text-success" : "bg-surface-alt text-ink-muted",
+          produto.ativo ? "bg-success/10 text-success" : "bg-surface text-ink-muted",
         )}
       >
         {produto.ativo ? "Ativo" : "Inativo"}
       </span>
       {produto.destaque && (
-        <span className="inline-flex items-center gap-0.5 rounded-full bg-brand-soft px-2 py-0.5 text-xs font-bold text-brand-strong">
+        <span className="inline-flex items-center gap-0.5 rounded-full bg-surface-strong px-2 py-0.5 text-xs font-bold text-ink">
           <Star className="size-3" aria-hidden="true" />
           Destaque
         </span>

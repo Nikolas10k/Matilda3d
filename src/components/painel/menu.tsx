@@ -66,7 +66,7 @@ export function MenuLateral({ papel }: { papel: Papel }) {
             aria-current={ativo ? "page" : undefined}
             className={cn(
               "flex min-h-11 items-center gap-3 rounded-xl px-3 text-[15px] font-medium transition-colors",
-              ativo ? "bg-brand-soft font-bold text-brand-strong" : "text-ink-muted hover:bg-surface-alt hover:text-ink",
+              ativo ? "bg-surface-strong font-bold text-ink" : "text-ink-muted hover:bg-surface hover:text-ink",
             )}
           >
             <Icone className="size-5" aria-hidden="true" />
@@ -101,7 +101,7 @@ export function BarraInferior({ papel, nome }: { papel: Papel; nome: string }) {
                 aria-current={ativo ? "page" : undefined}
                 className={cn(
                   "flex min-h-16 flex-col items-center justify-center gap-1 text-xs font-medium",
-                  ativo ? "text-brand-strong" : "text-ink-muted",
+                  ativo ? "text-ink" : "text-ink-muted",
                 )}
               >
                 <Icone className={cn("size-6", ativo && "stroke-[2.5]")} aria-hidden="true" />
@@ -115,7 +115,7 @@ export function BarraInferior({ papel, nome }: { papel: Papel; nome: string }) {
             <SheetTrigger
               className={cn(
                 "flex min-h-16 w-full flex-col items-center justify-center gap-1 text-xs font-medium",
-                maisAtivo ? "text-brand-strong" : "text-ink-muted",
+                maisAtivo ? "text-ink" : "text-ink-muted",
               )}
             >
               <Menu className="size-6" aria-hidden="true" />
@@ -135,7 +135,7 @@ export function BarraInferior({ papel, nome }: { papel: Papel; nome: string }) {
                       aria-current={estaAtivo(pathname, href) ? "page" : undefined}
                       className={cn(
                         "flex min-h-12 items-center gap-3 rounded-xl px-3 text-base font-medium",
-                        estaAtivo(pathname, href) ? "bg-brand-soft text-brand-strong" : "text-ink hover:bg-surface-alt",
+                        estaAtivo(pathname, href) ? "bg-surface-strong text-ink" : "text-ink hover:bg-surface",
                       )}
                     >
                       <Icone className="size-5" aria-hidden="true" />

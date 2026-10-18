@@ -22,7 +22,7 @@ function mascararWhatsApp(texto: string): string {
   return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
 }
 
-const classeCampo = "h-12 rounded-xl border-[#E3C9BB] bg-white";
+const classeCampo = "h-12 rounded-xl border-input bg-white";
 
 export function FormularioEncomendaSite() {
   const router = useRouter();
@@ -99,7 +99,7 @@ export function FormularioEncomendaSite() {
   });
 
   return (
-    <form onSubmit={enviar} noValidate className="flex flex-col gap-5 rounded-3xl bg-brand-soft p-6 md:p-8">
+    <form onSubmit={enviar} noValidate className="flex flex-col gap-5 rounded-card border border-border bg-surface p-6 md:p-8">
       {erroGeral && (
         <p role="alert" className="rounded-xl border border-danger/30 bg-white px-4 py-3 text-sm font-medium text-danger">
           {erroGeral}
@@ -138,7 +138,7 @@ export function FormularioEncomendaSite() {
             id="enc-tipo"
             name="tipo"
             defaultValue=""
-            className={cn("h-12 w-full rounded-xl border bg-white px-3 text-base", erros.tipo ? "border-destructive" : "border-[#E3C9BB]")}
+            className={cn("h-12 w-full rounded-xl border bg-white px-3 text-base", erros.tipo ? "border-destructive" : "border-input")}
             {...aria("tipo")}
           >
             <option value="" disabled>
@@ -165,7 +165,7 @@ export function FormularioEncomendaSite() {
           value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
           placeholder="Ex.: 20 chaveiros com o nome dos convidados, na cor rosa"
-          className="rounded-xl border-[#E3C9BB] bg-white"
+          className="rounded-xl border-input bg-white"
           {...aria("descricao")}
         />
       </Campo>
@@ -187,9 +187,9 @@ export function FormularioEncomendaSite() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <span className="text-sm font-bold">Imagem de referência (opcional)</span>
+        <span className="text-sm font-medium">Imagem de referência (opcional)</span>
         {imagem ? (
-          <div className="flex items-center justify-between gap-2 rounded-xl border border-[#E3C9BB] bg-white px-4 py-2 text-sm">
+          <div className="flex items-center justify-between gap-2 rounded-xl border border-input bg-white px-4 py-2 text-sm">
             <span className="truncate font-medium">{imagem.name}</span>
             <button
               type="button"
@@ -198,13 +198,13 @@ export function FormularioEncomendaSite() {
                 if (inputImagem.current) inputImagem.current.value = "";
               }}
               aria-label="Remover imagem"
-              className="flex size-11 shrink-0 items-center justify-center rounded-lg hover:bg-surface-alt"
+              className="flex size-11 shrink-0 items-center justify-center rounded-lg hover:bg-surface"
             >
               <X className="size-4" aria-hidden="true" />
             </button>
           </div>
         ) : (
-          <label className="flex min-h-14 cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[#E3C9BB] bg-white/60 text-sm font-bold text-ink-muted hover:border-brand hover:text-brand-strong focus-within:border-ring">
+          <label className="flex min-h-14 cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-input bg-white/60 text-sm font-medium text-ink-muted hover:border-ink hover:text-ink-soft focus-within:border-ring">
             <ImagePlus className="size-5" aria-hidden="true" />
             Escolher imagem (JPG, PNG ou WEBP, até 5 MB)
             <input
@@ -253,7 +253,7 @@ function Campo({
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-baseline justify-between gap-2">
-        <label htmlFor={`enc-${id}`} className="text-sm font-bold">
+        <label htmlFor={`enc-${id}`} className="text-sm font-medium">
           {rotulo}
         </label>
         {dica && <span className="tabular text-xs text-ink-muted">{dica}</span>}

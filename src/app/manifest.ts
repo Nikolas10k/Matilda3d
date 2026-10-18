@@ -11,13 +11,14 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: "/",
     display: "standalone",
     orientation: "portrait",
-    background_color: "#FFF4EE",
-    theme_color: "#1E1B33",
+    background_color: "#F4F3F1",
+    theme_color: "#F4F3F1",
     lang: "pt-BR",
     icons: [
-      { src: "/icones/icone-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/icones/icone-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/icones/icone-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      { src: "/brand/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/brand/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      // O símbolo fica dentro da área segura de 80%, então serve como maskable.
+      { src: "/brand/icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
   };
 }

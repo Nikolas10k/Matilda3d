@@ -33,18 +33,18 @@ async function Painel({ children }: { children: React.ReactNode }) {
   const usuario = await exigirEquipe();
 
   return (
-    <div className="min-h-dvh bg-surface-alt">
+    <div className="min-h-dvh bg-surface">
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-border bg-white px-4 py-6 md:flex">
-        <Link href="/admin" className="mb-8 px-2" aria-label="Início do painel">
-          <Logo tamanho={34} />
+        <Link href="/admin" className="mb-8 rounded-lg px-1" aria-label="Início do painel">
+          <Logo altura={42} priority />
         </Link>
         <MenuLateral papel={usuario.papel} />
       </aside>
 
       <div className="flex min-h-dvh flex-col md:pl-64">
         <header className="sticky top-0 z-20 flex h-16 items-center justify-between gap-3 border-b border-border bg-white/95 px-4 backdrop-blur md:px-8">
-          <Link href="/admin" className="md:hidden" aria-label="Início do painel">
-            <Logo tamanho={30} />
+          <Link href="/admin" className="rounded-lg md:hidden" aria-label="Início do painel">
+            <Logo altura={38} />
           </Link>
           <div className="ml-auto flex items-center gap-3">
             <div className="text-right leading-tight">
@@ -54,7 +54,7 @@ async function Painel({ children }: { children: React.ReactNode }) {
             <form action={sair} className="hidden md:block">
               <button
                 type="submit"
-                className="flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-ink-muted hover:bg-surface-alt hover:text-ink"
+                className="flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-ink-muted hover:bg-surface hover:text-ink"
               >
                 <LogOut className="size-4" aria-hidden="true" />
                 Sair
@@ -75,7 +75,7 @@ async function Painel({ children }: { children: React.ReactNode }) {
 
 function MolduraCarregando() {
   return (
-    <div className="min-h-dvh bg-surface-alt" aria-busy="true" aria-label="Carregando o painel">
+    <div className="min-h-dvh bg-surface" aria-busy="true" aria-label="Carregando o painel">
       <aside className="fixed inset-y-0 left-0 hidden w-64 flex-col gap-3 border-r border-border bg-white px-4 py-6 md:flex">
         <Skeleton className="mb-6 h-9 w-40" />
         {Array.from({ length: 8 }, (_, i) => (

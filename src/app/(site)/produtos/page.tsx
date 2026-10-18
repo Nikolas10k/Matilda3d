@@ -29,9 +29,9 @@ export default async function PaginaVitrine() {
         <FiltroVitrine categorias={categorias} />
       </Suspense>
       {produtos.length === 0 ? (
-        <p className="rounded-card bg-surface-alt p-8 text-center text-ink-muted">
+        <p className="rounded-card bg-surface p-8 text-center text-ink-muted">
           A vitrine está sendo montada.{" "}
-          <Link href="/encomenda" className="font-bold text-brand-strong underline-offset-4 hover:underline">
+          <Link href="/encomenda" className="font-medium text-ink underline-offset-4 hover:underline">
             Conte sua ideia pelo formulário de encomenda!
           </Link>
         </p>

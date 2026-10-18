@@ -35,7 +35,7 @@ export function BotaoAvancar({ id, status }: { id: string; status: StatusEncomen
           router.refresh();
         })
       }
-      className="inline-flex min-h-11 items-center gap-1 rounded-full px-3 text-sm font-bold text-brand-strong hover:bg-brand-soft disabled:opacity-50"
+      className="inline-flex min-h-11 items-center gap-1 rounded-full px-3 text-sm font-bold text-ink hover:bg-surface-strong disabled:opacity-50"
     >
       {salvando ? "Movendo…" : rotuloStatusEncomenda(proximo)}
       <ArrowRight className="size-4" aria-hidden="true" />

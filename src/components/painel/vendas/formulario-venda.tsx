@@ -102,7 +102,7 @@ export function FormularioVenda({ valoresIniciais, produtos, encomendas, aviso }
 
   return (
     <form onSubmit={enviar} noValidate className="flex flex-col gap-6 pb-28">
-      {aviso && <p className="rounded-xl bg-brand-soft px-4 py-3 text-sm font-medium text-brand-strong">{aviso}</p>}
+      {aviso && <p className="rounded-xl bg-surface-strong px-4 py-3 text-sm font-medium text-ink">{aviso}</p>}
 
       <Secao titulo="Cliente">
         <Controller
@@ -146,7 +146,7 @@ export function FormularioVenda({ valoresIniciais, produtos, encomendas, aviso }
                       id={`itens.${i}.descricao`}
                       {...register(`itens.${i}.descricao`)}
                       readOnly={Boolean(campo.produtoId)}
-                      className={campo.produtoId ? "bg-surface-alt font-bold" : undefined}
+                      className={campo.produtoId ? "bg-surface font-bold" : undefined}
                       placeholder="Ex.: Chaveiro personalizado"
                     />
                   </CampoRotulado>

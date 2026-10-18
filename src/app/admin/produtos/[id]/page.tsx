@@ -58,7 +58,7 @@ async function Edicao({ params }: { params: Params }) {
             href={`/produtos/${produto.slug}`}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-brand-strong hover:underline"
+            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-ink hover:underline"
           >
             Ver no site
             <ExternalLink className="size-4" aria-hidden="true" />

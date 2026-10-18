@@ -54,7 +54,7 @@ async function Relatorios({ searchParams }: { searchParams: SearchParams }) {
                 className="flex h-full flex-col gap-1 rounded-xl border border-border p-4 transition hover:border-ink hover:shadow-sm"
               >
                 <span className="flex items-center gap-2 font-bold">
-                  <Download className="size-4 text-brand-strong" aria-hidden="true" />
+                  <Download className="size-4 text-ink" aria-hidden="true" />
                   {e.rotulo}
                 </span>
                 <span className="text-sm text-ink-muted">{e.descricao}</span>

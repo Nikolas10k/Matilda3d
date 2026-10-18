@@ -66,7 +66,7 @@ async function DetalheVenda({ params }: { params: Params }) {
         {venda.encomendas && (
           <>
             {" · "}
-            <Link href={`/admin/encomendas/${venda.encomendas.id}`} className="font-medium text-brand-strong hover:underline">
+            <Link href={`/admin/encomendas/${venda.encomendas.id}`} className="font-medium text-ink hover:underline">
               Encomenda #{venda.encomendas.numero}
             </Link>
           </>
@@ -142,7 +142,7 @@ async function DetalheVenda({ params }: { params: Params }) {
                 href={linkWhatsApp(`Olá, ${venda.clientes.nome.split(" ")[0]}!`, venda.clientes.whatsapp)}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-bold text-whatsapp hover:underline"
+                className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-bold text-ink hover:underline"
               >
                 <MessageCircle className="size-4" aria-hidden="true" />
                 {formatarWhatsApp(venda.clientes.whatsapp)}
@@ -162,7 +162,7 @@ async function DetalheVenda({ params }: { params: Params }) {
 
 function Linha({ rotulo, valor, forte, destaque }: { rotulo: string; valor: string; forte?: boolean; destaque?: boolean }) {
   return (
-    <div className={`flex justify-between ${forte ? "text-base font-bold" : ""} ${destaque ? "font-bold text-brand-strong" : ""}`}>
+    <div className={`flex justify-between ${forte ? "text-base font-bold" : ""} ${destaque ? "font-bold text-ink" : ""}`}>
       <dt>{rotulo}</dt>
       <dd>{valor}</dd>
     </div>

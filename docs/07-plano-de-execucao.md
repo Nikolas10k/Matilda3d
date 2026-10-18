@@ -5,7 +5,9 @@ Execute uma fase por vez. Ao fim de cada uma: `pnpm lint`, `pnpm typecheck`, `pn
 ## Fase 0 — Setup
 
 - Next.js com TypeScript, Tailwind, ESLint, App Router e pasta `src/`.
-- shadcn/ui inicializado com os tokens de `docs/02` (variáveis CSS) e fontes Fredoka + DM Sans via `next/font`.
+- shadcn/ui inicializado com os tokens de `docs/02` (variáveis CSS mapeadas no tema: `background`, `foreground`, `muted`, `border`, `primary` = Grafite) e fontes Jost + DM Sans via `next/font`.
+- Conferir que `public/brand/` está no projeto e configurar favicon, ícones e Open Graph no `layout.tsx`.
+- *(A Fase 0 original foi feita com a identidade provisória, Fredoka e cor de destaque. A identidade aprovada foi aplicada depois, na fase "Identidade visual", abaixo da Fase 8.)*
 - Supabase: `@supabase/ssr`, clientes para servidor, navegador e middleware.
 - Vitest para testes unitários.
 - `src/lib/format.ts` com os formatadores e testes.
@@ -73,3 +75,10 @@ Execute uma fase por vez. Ao fim de cada uma: `pnpm lint`, `pnpm typecheck`, `pn
 - README com instruções de uso para a família (como registrar venda, lançar despesa e ler o dashboard).
 
 **Aceite**: site no ar no domínio; login funcionando em produção; README revisado.
+
+## Identidade visual aprovada (18/10/2026)
+
+- Aplicar o conceito B, "Casinhas" (`docs/02`), sobre o site e o painel já prontos: arquivos de `public/brand/`, paleta neutra, Jost + DM Sans, ícones e Open Graph.
+- Trocar todas as cores da identidade provisória (laranja, roxo, verde do WhatsApp) pelos tokens novos e revalidar as cores dos gráficos para daltonismo.
+
+**Aceite**: nenhum resto da paleta provisória no código; logo só pelos arquivos de `public/brand/`; contraste AA conferido; site revisado em 375px; `pnpm lint`, `pnpm typecheck`, `pnpm test` e `pnpm build` sem erros.

@@ -24,7 +24,7 @@ export function MenuCelular({ links, linkWhatsApp }: { links: { href: string; ro
         aria-label="Abrir menu"
         aria-haspopup="dialog"
         aria-expanded={aberto}
-        className="flex size-11 items-center justify-center rounded-full hover:bg-surface-alt md:hidden"
+        className="flex size-11 items-center justify-center rounded-full hover:bg-surface md:hidden"
       >
         <Menu className="size-6" aria-hidden="true" />
       </button>

@@ -79,7 +79,7 @@ async function Ficha({ params }: { params: Params }) {
             <ul className="flex flex-col divide-y divide-border">
               {c.vendas.map((v) => (
                 <li key={v.id}>
-                  <Link href={`/admin/vendas/${v.id}`} className="flex items-center justify-between gap-3 py-2 text-sm hover:text-brand-strong">
+                  <Link href={`/admin/vendas/${v.id}`} className="flex items-center justify-between gap-3 py-2 text-sm hover:text-ink-soft">
                     <span>
                       <span className="block font-bold">Venda #{v.numero}</span>
                       <span className="block text-ink-muted">{formatarData(v.data_venda)}</span>
@@ -102,7 +102,7 @@ async function Ficha({ params }: { params: Params }) {
             <ul className="flex flex-col divide-y divide-border">
               {c.encomendas.map((e) => (
                 <li key={e.id}>
-                  <Link href={`/admin/encomendas/${e.id}`} className="flex items-center justify-between gap-3 py-2 text-sm hover:text-brand-strong">
+                  <Link href={`/admin/encomendas/${e.id}`} className="flex items-center justify-between gap-3 py-2 text-sm hover:text-ink-soft">
                     <span>
                       <span className="block font-bold">
                         #{e.numero} · {e.tipo}

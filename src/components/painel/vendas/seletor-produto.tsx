@@ -56,7 +56,7 @@ export function SeletorProduto({
                     aoEscolher(p);
                     setBusca("");
                   }}
-                  className="flex min-h-14 w-full items-center justify-between gap-3 px-4 py-2 text-left hover:bg-surface-alt"
+                  className="flex min-h-14 w-full items-center justify-between gap-3 px-4 py-2 text-left hover:bg-surface"
                 >
                   <span className="font-bold">{p.nome}</span>
                   <span className="tabular shrink-0 text-sm text-ink-muted">

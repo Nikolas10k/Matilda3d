@@ -15,16 +15,18 @@ Todas as páginas são Server Components, com dados vindos do Supabase (apenas p
 
 ## Header
 
-Logo (texto "Matilda" + "3D" na cor de destaque, com ícone de cubo), links Produtos, Como encomendar, Sobre, e botão verde "Fale no WhatsApp". No mobile, menu em gaveta (Sheet do shadcn).
+Fundo Branco com borda inferior de 1px em Pérola. À esquerda, `public/brand/logo-horizontal.svg` (altura de 40px no desktop e 32px no mobile), com link para `/`. Links Produtos, Como encomendar e Sobre em DM Sans 15px Grafite, e botão pill grafite "Fale no WhatsApp" com ícone em traço. No mobile, menu em gaveta (Sheet do shadcn).
+
+Metadados de ícones no `layout.tsx`: `favicon.ico`, `favicon.svg`, `apple-touch-icon.png` e o `manifest` com `icon-192.png` e `icon-512.png`. Open Graph padrão: `og-image.png`.
 
 ## Home
 
-1. **Hero**: selo "Feito camada por camada, com carinho", título, subtítulo, botões "Ver produtos" e "Quero algo personalizado", ilustração ou foto de destaque.
+1. **Hero**: fundo Névoa, label "Impressão 3D" (Jost 500, maiúsculas, espaçada), título "Chaveiros e peças para casa, feitos camada por camada" (Jost 300), subtítulo curto, botões "Ver produtos" (grafite) e "Quero algo personalizado" (contorno grafite) e, à direita, uma foto de destaque de produto ou, enquanto não houver foto, o `logo-principal.svg` grande sobre Pérola.
 2. **Destaques**: até 6 produtos com `destaque = true`, mesmo card da vitrine.
 3. **Como encomendar**: 3 passos (Escolha ou imagine, Combine pelo WhatsApp, Receba a sua peça).
 4. **Encomenda personalizada**: texto e botão para `/encomenda`.
 5. **Sobre**: foto dos criadores e texto curto (conteúdo vindo de `configuracoes`).
-6. **Rodapé**: logo, Instagram, WhatsApp, links e "Site por Givance Tech".
+6. **Rodapé**: fundo Grafite com `logo-horizontal-branco.svg`, Instagram, WhatsApp, links e "Site por Givance Tech".
 
 ## Card de produto
 
@@ -73,4 +75,5 @@ Ao enviar:
 - **Número do WhatsApp:** vem de Configurações → Marca (painel); se vazio, de `NEXT_PUBLIC_WHATSAPP_NUMERO`; se os dois estiverem vazios, o link abre o WhatsApp sem destinatário.
 - **Limite de envios:** usa a função `consumir_limite_envio` (migração `…_limite_envios.sql`). Enquanto a migração não for aplicada, o formulário funciona sem o limite (honeypot continua ativo) e registra um aviso no log.
 - **Animações ao rolar:** componente `src/components/site/revelar.tsx` (docs/02, "Movimento").
+- **Foto do hero:** a primeira foto do primeiro produto da vitrine (destaques) que tiver foto; sem nenhuma foto, o `logo-principal.svg` sobre Pérola. Para trocar a foto do hero, mude a ordem dos destaques no painel.
 - **Lighthouse (mobile, medido localmente com `next start`):** Acessibilidade 95–96, SEO 100, Boas práticas 100; Performance 89–94 conforme a página e a rodada. Conferir de novo no domínio publicado (Fase 8).

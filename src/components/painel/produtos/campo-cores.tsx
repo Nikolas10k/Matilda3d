@@ -53,13 +53,13 @@ export function CampoCores({ id, cores, aoMudar, erro }: Props) {
         <ul className="flex flex-wrap gap-2" aria-label="Cores disponíveis">
           {cores.map((cor) => (
             <li key={cor}>
-              <span className="inline-flex items-center gap-1 rounded-full bg-brand-soft py-1 pr-1 pl-3 text-sm font-bold text-brand-strong">
+              <span className="inline-flex items-center gap-1 rounded-full bg-surface-strong py-1 pr-1 pl-3 text-sm font-bold text-ink">
                 {cor}
                 <button
                   type="button"
                   onClick={() => aoMudar(cores.filter((c) => c !== cor))}
                   aria-label={`Remover a cor ${cor}`}
-                  className="flex size-8 items-center justify-center rounded-full hover:bg-brand/15"
+                  className="flex size-8 items-center justify-center rounded-full hover:bg-ink/10"
                 >
                   <X className="size-3.5" aria-hidden="true" />
                 </button>

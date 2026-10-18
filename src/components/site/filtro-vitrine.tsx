@@ -8,7 +8,7 @@ type Categoria = { nome: string; slug: string; quantidade: number };
 
 const chip = (ativo: boolean) =>
   cn(
-    "inline-flex min-h-11 shrink-0 items-center rounded-full border px-[18px] text-sm font-bold transition-colors",
+    "inline-flex min-h-11 shrink-0 items-center rounded-full border px-[18px] text-sm font-medium transition-colors",
     ativo ? "border-ink bg-ink text-white" : "border-input bg-white hover:border-ink",
   );
 
@@ -48,9 +48,9 @@ export function FiltroVitrine({ categorias }: { categorias: Categoria[] }) {
       <ChipsCategorias categorias={categorias} atual={atual?.slug ?? null} />
       {atual && <style>{`[data-vitrine] [data-categoria]:not([data-categoria="${atual.slug}"]){display:none}`}</style>}
       {atual && atual.quantidade === 0 && (
-        <p className="rounded-card bg-surface-alt p-8 text-center text-ink-muted">
+        <p className="rounded-card bg-surface p-8 text-center text-ink-muted">
           Nenhum produto em {atual.nome} por enquanto.{" "}
-          <Link href="/encomenda" className="font-bold text-brand-strong underline-offset-4 hover:underline">
+          <Link href="/encomenda" className="font-medium text-ink underline-offset-4 hover:underline">
             Que tal encomendar algo sob medida?
           </Link>
         </p>

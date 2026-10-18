@@ -20,7 +20,7 @@ export function ConteudoMenu({
     <Sheet open={aberto} onOpenChange={setAberto}>
       <SheetContent side="right" className="w-[85vw] max-w-sm">
         <SheetHeader>
-          <SheetTitle className="text-xl font-bold">Menu</SheetTitle>
+          <SheetTitle className="text-xl font-medium">Menu</SheetTitle>
           <SheetDescription className="sr-only">Navegação do site</SheetDescription>
         </SheetHeader>
         <nav aria-label="Menu principal" className="flex flex-col gap-1 px-4">
@@ -29,7 +29,7 @@ export function ConteudoMenu({
               key={l.href}
               href={l.href}
               onClick={() => setAberto(false)}
-              className="flex min-h-12 items-center rounded-xl px-3 text-lg font-medium hover:bg-surface-alt"
+              className="flex min-h-12 items-center rounded-xl px-3 text-lg font-medium hover:bg-surface"
             >
               {l.rotulo}
             </Link>

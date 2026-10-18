@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fredoka } from "next/font/google";
+import { DM_Sans, Jost } from "next/font/google";
 import "./globals.css";
 
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFF4EE",
+  themeColor: "#F4F3F1",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${fredoka.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${jost.variable} ${dmSans.variable} h-full antialiased`}
       // O script abaixo marca <html data-js> antes de pintar (animações de entrada).
       suppressHydrationWarning
     >

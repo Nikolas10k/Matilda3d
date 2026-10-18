@@ -198,7 +198,7 @@ export function FormularioProduto({ novo, valoresIniciais, categorias, padroes, 
             />
           </CampoTexto>
         </div>
-        <p className="rounded-xl bg-surface-alt px-4 py-3 text-sm">
+        <p className="rounded-xl bg-surface px-4 py-3 text-sm">
           <span className="font-bold">Margem: </span>
           {margem === null ? (
             <span className="text-ink-muted">preencha preço e custo para ver quanto do preço é lucro.</span>

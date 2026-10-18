@@ -137,13 +137,13 @@ export function Calculadora({ padroes, inicial, aoUsar }: Props) {
               key={l.rotulo}
               className={
                 l.destaque
-                  ? "rounded-xl border border-brand/40 bg-brand-soft p-4"
+                  ? "rounded-xl border border-line bg-surface-strong p-4"
                   : "rounded-xl border border-border bg-white p-4"
               }
             >
               <div className="flex items-baseline justify-between gap-3">
                 <span className="font-bold">{l.rotulo}</span>
-                <span className={l.destaque ? "tabular text-xl font-bold text-brand-strong" : "tabular font-bold"}>
+                <span className={l.destaque ? "tabular text-xl font-bold text-ink" : "tabular font-bold"}>
                   {l.valor}
                 </span>
               </div>

@@ -18,11 +18,11 @@ export default function PaginaObrigado({ searchParams }: PageProps<"/obrigado">)
       <span className="flex size-16 items-center justify-center rounded-full bg-success/10 text-success">
         <CheckCircle2 className="size-9" aria-hidden="true" />
       </span>
-      <h1 className="text-[clamp(32px,6vw,44px)] leading-tight font-bold tracking-tight">Encomenda enviada!</h1>
+      <h1 className="text-[clamp(32px,6vw,44px)] leading-tight font-light">Encomenda enviada!</h1>
       <Suspense fallback={<p className="text-lg text-ink-muted">Recebemos a sua ideia.</p>}>
         <Confirmacao searchParams={searchParams} />
       </Suspense>
-      <Link href="/produtos" className="inline-flex min-h-11 items-center font-bold text-brand-strong underline-offset-4 hover:underline">
+      <Link href="/produtos" className="inline-flex min-h-11 items-center font-medium text-ink underline-offset-4 hover:underline">
         Ver a vitrine enquanto isso
       </Link>
     </Faixa>

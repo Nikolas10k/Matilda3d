@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Criar nova senha" };
 export default function PaginaRedefinirSenha() {
   return (
     <>
-      <h1 className="text-2xl font-bold">Criar senha</h1>
+      <h1 className="text-2xl font-medium">Criar senha</h1>
       <p className="mt-1 mb-6 text-sm text-ink-muted">
         Escolha uma senha com pelo menos 8 caracteres. Você vai usá-la para entrar no painel.
       </p>

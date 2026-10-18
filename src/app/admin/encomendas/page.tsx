@@ -113,7 +113,7 @@ async function Quadro() {
 function Cartao({ encomenda: e, hoje }: { encomenda: EncomendaNaLista; hoje: string }) {
   return (
     <article className="flex flex-col gap-2 rounded-xl border border-border bg-white p-3 shadow-xs">
-      <Link href={`/admin/encomendas/${e.id}`} className="flex flex-col gap-0.5 hover:text-brand-strong">
+      <Link href={`/admin/encomendas/${e.id}`} className="flex flex-col gap-0.5 hover:text-ink-soft">
         <span className="font-bold">
           #{e.numero} · {e.nomeContato}
         </span>

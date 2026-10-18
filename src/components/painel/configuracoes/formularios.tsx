@@ -99,7 +99,7 @@ export function FormularioMarca({
       <div className="flex flex-col gap-2">
         <span className="text-sm font-bold">Foto dos criadores</span>
         <div className="flex flex-wrap items-center gap-4">
-          <div className="relative flex aspect-[4/3] w-40 items-center justify-center overflow-hidden rounded-xl border border-border bg-surface-alt">
+          <div className="relative flex aspect-[4/3] w-40 items-center justify-center overflow-hidden rounded-xl border border-border bg-surface">
             {f.valores.fotoCriadores ? (
               <Image src={urlPublica(BUCKET_MARCA, f.valores.fotoCriadores)} alt="Foto dos criadores" fill sizes="160px" className="object-cover" />
             ) : (
@@ -218,7 +218,7 @@ export function GerenciarCategorias({ categorias }: { categorias: { id: string; 
                 <button type="submit" aria-label="Salvar nome" disabled={ocupado} className="flex size-11 items-center justify-center rounded-lg text-success hover:bg-success/10">
                   <Check className="size-4" aria-hidden="true" />
                 </button>
-                <button type="button" aria-label="Cancelar" onClick={() => setEditando(null)} className="flex size-11 items-center justify-center rounded-lg hover:bg-surface-alt">
+                <button type="button" aria-label="Cancelar" onClick={() => setEditando(null)} className="flex size-11 items-center justify-center rounded-lg hover:bg-surface">
                   <X className="size-4" aria-hidden="true" />
                 </button>
               </form>
@@ -230,13 +230,13 @@ export function GerenciarCategorias({ categorias }: { categorias: { id: string; 
                     {c.produtos} {c.produtos === 1 ? "produto" : "produtos"}
                   </span>
                 </span>
-                <button type="button" aria-label={`Subir ${c.nome}`} disabled={i === 0 || ocupado} onClick={() => executar(() => moverCategoria(c.id, "subir"))} className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface-alt disabled:opacity-30">
+                <button type="button" aria-label={`Subir ${c.nome}`} disabled={i === 0 || ocupado} onClick={() => executar(() => moverCategoria(c.id, "subir"))} className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface disabled:opacity-30">
                   <ArrowUp className="size-4" aria-hidden="true" />
                 </button>
-                <button type="button" aria-label={`Descer ${c.nome}`} disabled={i === categorias.length - 1 || ocupado} onClick={() => executar(() => moverCategoria(c.id, "descer"))} className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface-alt disabled:opacity-30">
+                <button type="button" aria-label={`Descer ${c.nome}`} disabled={i === categorias.length - 1 || ocupado} onClick={() => executar(() => moverCategoria(c.id, "descer"))} className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface disabled:opacity-30">
                   <ArrowDown className="size-4" aria-hidden="true" />
                 </button>
-                <button type="button" aria-label={`Renomear ${c.nome}`} onClick={() => setEditando({ id: c.id, nome: c.nome })} className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface-alt">
+                <button type="button" aria-label={`Renomear ${c.nome}`} onClick={() => setEditando({ id: c.id, nome: c.nome })} className="flex size-11 items-center justify-center rounded-lg text-ink-muted hover:bg-surface">
                   <Pencil className="size-4" aria-hidden="true" />
                 </button>
                 <button
@@ -329,7 +329,7 @@ export function GerenciarUsuarios({ usuarios, meuId }: { usuarios: UsuarioDaEqui
         ))}
       </ul>
 
-      <form onSubmit={f.enviar} noValidate className="flex flex-col gap-3 rounded-xl bg-surface-alt p-4">
+      <form onSubmit={f.enviar} noValidate className="flex flex-col gap-3 rounded-xl bg-surface p-4">
         <p className="font-bold">Convidar pessoa</p>
         <div className="grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
           <CampoRotulado id="conv-nome" rotulo="Nome" erro={f.erros.nome}>

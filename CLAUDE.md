@@ -21,6 +21,14 @@ A aplicação tem duas partes:
 - Deploy na Vercel
 - Gerenciador de pacotes: pnpm
 
+## Identidade visual (aprovada)
+
+- Conceito B, "Casinhas": monograma "m" de dois telhados, em grafite sobre fundos neutros.
+- **Arquivos de marca prontos em `public/brand/`.** Use-os (via `src/components/marca/logo.tsx`), não recrie o logo em código.
+- Paleta 100% neutra: Névoa `#F4F3F1`, Branco `#FFFFFF`, Pérola `#E6E4E0`, Concreto `#A8A5A0`, Pedra `#6B6964`, Grafite `#2F2F31`. Não existe cor de destaque; botões de WhatsApp também são grafite.
+- Fontes: Jost (títulos) e DM Sans (textos).
+- Detalhes, regras de uso e as decisões de contraste e de cores dos gráficos: `docs/02-marca-e-design.md`.
+
 ## Mapa da documentação (leia antes de implementar)
 
 | Arquivo | Quando consultar |
@@ -61,7 +69,7 @@ A aplicação tem duas partes:
 - `middleware.ts` foi renomeado para **`src/proxy.ts`** (função `proxy`). A renovação de sessão do Supabase e o bloqueio de `/admin` ficam lá, via `src/lib/supabase/proxy.ts`.
 - **`cacheComponents` está ativo.** Leituras de `cookies()`/sessão precisam ficar dentro de `<Suspense>`. Em vez de `export const revalidate = 60` (citado no `docs/03`), use `'use cache'` + `cacheLife` + `cacheTag`, e `revalidatePath`/`updateTag` ao salvar no painel.
 - Clientes Supabase: `src/lib/supabase/client.ts` (navegador), `server.ts` (servidor com sessão), `admin.ts` (service_role, só servidor, ignora RLS).
-- Tokens de design só em `src/app/globals.css` (Tailwind v4, sem `tailwind.config`). Ver `docs/02`.
+- Tokens de design só em `src/app/globals.css` (Tailwind v4, sem `tailwind.config`). Ver `docs/02`. Botões do site: `botaoPrimario`/`botaoContorno` em `src/components/site/blocos.tsx`.
 - **Páginas do painel com dados:** o título fica fora e a parte que busca dados vai num componente async dentro de `<Suspense>` (exigência da validação de navegação instantânea do Next 16). Ver `src/app/admin/produtos/page.tsx`.
 - O cliente Supabase do servidor chama `connection()` antes de tudo (o SDK usa `Date.now()`).
 - **Nunca rode `pnpm build` com o `pnpm dev` ligado:** os dois usam `.next` e o build quebra o CSS do servidor de desenvolvimento. Pare o dev, faça o build e ligue de novo.
@@ -102,3 +110,4 @@ NEXT_PUBLIC_SITE_URL=https://matilda3d.com.br
 - [x] Fase 6 — Encomendas e clientes (quadro por status no desktop e lista agrupada no celular, destaques de prazo e "sem resposta", detalhe com imagem privada, histórico e "Transformar em venda"; clientes com busca, totais, histórico e cadastro sem WhatsApp repetido). Critérios testados no navegador com encomenda simulada como o site vai gravar.
 - [x] Fase 7 — Site público (home, vitrine, produto, encomenda, sobre, obrigado; animações ao rolar; WhatsApp com mensagem pronta e cliques anônimos; formulário com upload, honeypot e limite por IP). **Pendente:** número do WhatsApp da loja, migração do limite de envios e confirmar Lighthouse ≥ 90 no domínio publicado.
 - [ ] Fase 8 — Polimento, SEO e deploy. Feito: SEO (sitemap, robots, Open Graph), 404, PWA do painel, guia da família (`GUIA-DA-FAMILIA.md`), senha da conta `admin@admin.com` trocada, deploy na Vercel (projeto `matilda3d`, time givance) em https://matilda3d.vercel.app, com proteção de login da Vercel só nas previews. Falta: `SUPABASE_SERVICE_ROLE_KEY` na Vercel (a família cadastra no painel da Vercel), Site URL/Redirect URLs e SMTP no Supabase Auth, desligar cadastro público, migrations `20261016000001` e `20261016000002` no SQL Editor, WhatsApp da loja, Lighthouse no domínio publicado, domínio próprio.
+- [x] Identidade visual aprovada (18/10/2026) — conceito B "Casinhas" aplicado no site e no painel: logos, favicon, ícones do PWA e Open Graph de `public/brand/`; paleta neutra e Jost + DM Sans; cores dos gráficos revalidadas para daltonismo (entradas `#3366A3`, saídas `#A85A32`). Site revisado em 375px e no desktop. **Pendente:** revisar o painel logado no celular e publicar na Vercel.

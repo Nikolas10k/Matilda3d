@@ -18,7 +18,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
-        whatsapp: "bg-whatsapp text-white hover:bg-whatsapp/90",
+        whatsapp: "bg-ink text-white hover:bg-ink/90",
       },
       size: {
         // Alvos de toque de pelo menos 44px (CLAUDE.md, regra 10).

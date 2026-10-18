@@ -124,7 +124,7 @@ async function Detalhe({ params }: { params: Params }) {
               {e.consentimento_contato ? "Autorizou contato pelo WhatsApp sobre esta encomenda." : "Sem autorização de contato registrada."}
             </p>
             {e.clientes && (
-              <Link href={`/admin/clientes/${e.clientes.id}`} className="inline-flex min-h-11 items-center gap-1 self-start text-sm font-medium text-brand-strong hover:underline">
+              <Link href={`/admin/clientes/${e.clientes.id}`} className="inline-flex min-h-11 items-center gap-1 self-start text-sm font-medium text-ink hover:underline">
                 Ver ficha do cliente
                 <ArrowRight className="size-4" aria-hidden="true" />
               </Link>

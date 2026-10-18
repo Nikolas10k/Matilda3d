@@ -6,7 +6,7 @@ export function EmBreve({ titulo, fase, descricao }: { titulo: string; fase: num
     <section className="flex flex-col gap-6">
       <h1 className="text-2xl font-bold md:text-3xl">{titulo}</h1>
       <div className="flex flex-col items-start gap-3 rounded-card border border-border bg-white p-6">
-        <span className="flex size-11 items-center justify-center rounded-full bg-brand-soft text-brand-strong">
+        <span className="flex size-11 items-center justify-center rounded-full bg-surface-strong text-ink">
           <Hammer className="size-5" aria-hidden="true" />
         </span>
         <p className="font-bold">Em construção — chega na Fase {fase}.</p>

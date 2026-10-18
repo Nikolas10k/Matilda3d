@@ -78,7 +78,7 @@ async function Lista({ searchParams }: { searchParams: SearchParams }) {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`Abrir WhatsApp de ${c.nome}`}
-                    className="flex size-11 shrink-0 items-center justify-center rounded-full text-whatsapp hover:bg-whatsapp/10"
+                    className="flex size-11 shrink-0 items-center justify-center rounded-full text-ink hover:bg-ink/10"
                   >
                     <MessageCircle className="size-5" aria-hidden="true" />
                   </a>
@@ -101,15 +101,15 @@ async function Lista({ searchParams }: { searchParams: SearchParams }) {
               </thead>
               <tbody>
                 {clientes.map((c) => (
-                  <tr key={c.id} className="border-b border-border last:border-0 hover:bg-surface-alt/60">
+                  <tr key={c.id} className="border-b border-border last:border-0 hover:bg-surface/60">
                     <td className="px-4 py-3">
-                      <Link href={`/admin/clientes/${c.id}`} className="font-bold hover:text-brand-strong hover:underline">
+                      <Link href={`/admin/clientes/${c.id}`} className="font-bold hover:text-ink-soft hover:underline">
                         {c.nome}
                       </Link>
                     </td>
                     <td className="px-4 py-3">
                       {c.whatsapp ? (
-                        <a href={linkWhatsApp(`Olá, ${c.nome.split(" ")[0]}!`, c.whatsapp)} target="_blank" rel="noreferrer" className="text-whatsapp hover:underline">
+                        <a href={linkWhatsApp(`Olá, ${c.nome.split(" ")[0]}!`, c.whatsapp)} target="_blank" rel="noreferrer" className="text-ink hover:underline">
                           {formatarWhatsApp(c.whatsapp)}
                         </a>
                       ) : (
