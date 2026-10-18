@@ -98,14 +98,14 @@ Matilda 3D | Presentes e Casa
 
 Esse campo entra na busca do Instagram. O @ já traz "impressão 3D", então o nome fica com as palavras que o cliente digita: "presentes" e "casa".
 
-**Bio (124 caracteres; o limite é 150):**
+**Bio (147 caracteres; o limite é 150):**
 
 ```
-Peças impressas em 3D sob encomenda
-🔑 Chaveiros personalizados
-✝️ Artigos religiosos
+Sua ideia ganha forma em 3D ✨
+🔑 Chaveiros com nome, inicial e pet
+✝️ Artigos religiosos e lembrancinhas
 🏠 Decoração para casa
-👇 Conte sua ideia
+📩 Encomende no Direct
 ```
 
 **Link:** https://matilda3d.vercel.app (ou o domínio próprio quando estiver no ar). Se preferir que a pessoa vá direto pro WhatsApp, use o link `wa.me` da loja assim que o número estiver definido.
