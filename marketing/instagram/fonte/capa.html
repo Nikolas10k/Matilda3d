@@ -1,0 +1,15 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="fonts/fonts.css">
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1920px;background:#F4F3F1;overflow:hidden}
+.c{position:absolute;left:50%;top:50%;width:620px;height:620px;transform:translate(-50%,-50%);border-radius:50%;background:#FFFFFF;border:3px solid #E6E4E0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px}
+svg{width:380px;height:380px}
+.t{font-family:'Jost';font-weight:500;font-size:34px;letter-spacing:.28em;text-transform:uppercase;color:#2F2F31;padding-left:.28em}
+</style></head><body><div class="c" id="c"></div>
+<script>
+const I={
+chaveiros:['Chaveiros','<circle cx="50" cy="14" r="4.2" fill="#A8A5A0"/><circle cx="34" cy="34" r="9" fill="none" stroke="#2F2F31" stroke-width="3.2"/><path d="M44 38H70Q76 38 76 44V74Q76 80 70 80H44Q38 80 38 74V44Q38 38 44 38Z" fill="none" stroke="#2F2F31" stroke-width="3.2"/><circle cx="46" cy="46" r="2.6" fill="#2F2F31"/><path d="M48 64H66" stroke="#2F2F31" stroke-width="3.2" stroke-linecap="round"/><line x1="12" y1="88" x2="88" y2="88" stroke="#A8A5A0" stroke-width="1.8" stroke-linecap="round"/>'],
+religiosos:['Religiosos','<circle cx="50" cy="12" r="4.2" fill="#A8A5A0"/><path d="M50 22V80M34 38H66" fill="none" stroke="#2F2F31" stroke-width="3.2" stroke-linecap="round"/><line x1="12" y1="88" x2="88" y2="88" stroke="#A8A5A0" stroke-width="1.8" stroke-linecap="round"/>'],
+casa:['Para casa','<circle cx="50" cy="18" r="4.2" fill="#A8A5A0"/><path d="M28 80V48L50 28L72 48V80Z" fill="none" stroke="#2F2F31" stroke-width="3.2" stroke-linejoin="round"/><path d="M44 80V64H56V80" fill="none" stroke="#2F2F31" stroke-width="3.2" stroke-linejoin="round"/><line x1="12" y1="88" x2="88" y2="88" stroke="#A8A5A0" stroke-width="1.8" stroke-linecap="round"/>']};
+const [t,p]=I[new URLSearchParams(location.search).get('id')];
+document.getElementById('c').innerHTML=`<svg viewBox="0 0 100 100">${p}</svg>`;
+document.fonts.ready.then(()=>window.PRONTO=true);
+</script></body></html>

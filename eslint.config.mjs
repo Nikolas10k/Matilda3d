@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Scripts que geram as artes do Instagram (fora do app)
+    "marketing/**",
   ]),
 ]);
 
