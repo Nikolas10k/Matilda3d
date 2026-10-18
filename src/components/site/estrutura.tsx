@@ -50,7 +50,7 @@ function IconeInstagram({ className }: { className?: string }) {
 }
 
 export function linkInstagram(usuario: string | null) {
-  const u = (usuario || process.env.NEXT_PUBLIC_INSTAGRAM_USUARIO || "_matilda3D").replace(/^@/, "");
+  const u = (usuario || process.env.NEXT_PUBLIC_INSTAGRAM_USUARIO || "matildaimpressao3d").replace(/^@/, "");
   return { usuario: u, url: `https://instagram.com/${u}` };
 }
 

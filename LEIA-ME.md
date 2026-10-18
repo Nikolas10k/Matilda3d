@@ -29,5 +29,5 @@ referencia/
 ## Antes de começar
 
 - Preencha o número do WhatsApp da Matilda3D (`NEXT_PUBLIC_WHATSAPP_NUMERO`).
-- Confirme o @ do Instagram (`NEXT_PUBLIC_INSTAGRAM_USUARIO`, hoje `_matilda3D`).
+- Confirme o @ do Instagram (`NEXT_PUBLIC_INSTAGRAM_USUARIO`, hoje `matildaimpressao3d`).
 - `public/brand/perfil-instagram.png` já serve como foto de perfil do Instagram.
