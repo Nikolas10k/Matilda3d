@@ -2,7 +2,7 @@
 
 Artes em 1080 × 1350 (4:5), cada uma num arquivo separado, nas cores e com o logo da marca (`public/brand/`): Névoa, Branco, Pérola, Concreto, Pedra e Grafite, com Jost nos títulos e DM Sans nos textos.
 
-As peças nas artes são **renderizações 3D ilustrativas**, não fotos de produtos já fabricados. Os posts individuais trazem "Imagens ilustrativas" no rodapé, e a legenda do carrossel avisa a mesma coisa. Quando houver fotos de peças reais da Matilda, troque as imagens: os textos continuam valendo.
+As artes usam **fotos de banco de imagens gratuito (Unsplash)**. A [Licença Unsplash](https://unsplash.com/license) permite uso comercial, inclusive em redes sociais, sem pagar e sem precisar dar crédito. Como as fotos mostram peças de outras pessoas, e não produtos fabricados pela Matilda, **todas as artes trazem "Imagens ilustrativas" no rodapé**, e as legendas avisam a mesma coisa. Quando houver fotos de peças reais da Matilda, troque as fotos em `fonte/fotos/` e gere de novo: textos e layout continuam valendo.
 
 | Arquivo | Publicação |
 | --- | --- |
@@ -10,7 +10,7 @@ As peças nas artes são **renderizações 3D ilustrativas**, não fotos de prod
 | `02-chaveiros.png` | Publicação 2: chaveiros personalizados |
 | `03-fe-e-lar.png` | Publicação 3: fé e lar |
 | `destaque-chaveiros.png`, `destaque-religiosos.png`, `destaque-casa.png` | Capas dos destaques (1080 × 1920) |
-| `fonte/` | Código que gera as artes (three.js + Playwright), para refazer ou ajustar |
+| `fonte/` | Fotos originais e código que monta as artes (HTML + Playwright), para refazer ou ajustar |
 
 ---
 
@@ -58,6 +58,8 @@ Também fica lindo como lembrancinha para aniversários e datas especiais.
 
 Me conta pra quem é o presente e a gente vê junto as possibilidades. Peça o seu pelo Direct! 💬
 
+Imagem ilustrativa.
+
 #chaveirospersonalizados #chaveiro3d #presentepersonalizado #lembrancinhas #impressao3d
 ```
 
@@ -78,6 +80,8 @@ Na Matilda, criamos peças em impressão 3D que unem significado e utilidade:
 Cada peça pode ser pensada para o seu espaço e para o seu momento, seja para decorar, presentear ou celebrar.
 
 Conheça as possibilidades: chame no Direct ou no WhatsApp (link na bio) e conte o que você procura.
+
+Imagens ilustrativas.
 
 #artigosreligiosos #lembrancinhasreligiosas #decoracaodecasa #impressao3d #presentecomsignificado
 ```
@@ -136,6 +140,17 @@ Publique de **trás pra frente se quiser que o carrossel fique no topo da grade*
 - **Tenha um link único na bio** que leve para a vitrine do site, onde a pessoa vê os produtos e já cai no WhatsApp com a mensagem pronta.
 - **Não prometa prazo ou preço no feed** antes de confirmar caso a caso. Combine sempre pelo Direct ou WhatsApp.
 
+## Fotos usadas (Unsplash, licença gratuita)
+
+| Arte | Foto |
+| --- | --- |
+| Carrossel 1 (capa) | [Impressora 3D com peças impressas](https://unsplash.com/photos/3d-printer-with-filament-and-printed-objects-on-desk-PTttkdv-Kfk) |
+| Carrossel 2 (chaveiros) | [Chaveiro de madeira com número](https://unsplash.com/photos/a-wooden-keychain-with-a-metal-letter-on-it-HVpaZw9TDFk) |
+| Carrossel 3 (religiosos) | [Imagem de Nossa Senhora com coroa](https://unsplash.com/photos/virgin-mary-statue-with-gold-crown-io5vL8ymYNw) |
+| Carrossel 4 (para casa) | [Vaso branco com capim-dos-pampas](https://unsplash.com/photos/6ojCyWPrzCk) |
+| Post 2 (chaveiros) e carrossel 5 | [Chaveiros de dragão impressos em 3D](https://unsplash.com/photos/colorful-dragon-shaped-keychains-hanging-on-display-QB3-E0GEBIw) |
+| Post 3 (fé e lar) e carrossel 5 | [Terço de madeira](https://unsplash.com/photos/brown-wooden-beaded-rosary-HozneSuPplM) e [vaso vazado](https://unsplash.com/photos/giRMqme_f-Q) |
+
 ## Como regerar as artes
 
-Na pasta `fonte/`: copie `simbolo.svg` e `logo-principal.svg` de `public/brand/`, baixe Jost e DM Sans para `fonts/` (com um `fonts.css`), rode `npm i three@0.169.0 playwright-core` e sirva a pasta com `python3 -m http.server 8765`. Depois rode `node shot.mjs s1 s2 s3 s4 s5 p2 p3` (as imagens saem em `out/`) e `node capas.mjs`. Os textos e a composição de cada arte ficam em `arts.js`; os modelos das peças, em `lib.js`.
+Na pasta `fonte/`: copie `simbolo.svg` e `logo-principal.svg` de `public/brand/`, baixe Jost e DM Sans para `fonts/` (com um `fonts.css`), rode `npm i playwright-core` e sirva a pasta com `python3 -m http.server 8765`. Depois rode `node shot-foto.mjs s1 s2 s3 s4 s5 p2 p3` (as imagens saem em `out-foto/`) e `node capas.mjs`. Textos, fotos e recortes de cada arte ficam em `artes-foto.js`.

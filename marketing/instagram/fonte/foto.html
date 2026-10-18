@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root { --nevoa:#F4F3F1; --branco:#FFFFFF; --perola:#E6E4E0; --concreto:#A8A5A0; --pedra:#6B6964; --grafite:#2F2F31; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--nevoa); }
+  body { font-family:'DM Sans', sans-serif; color:var(--grafite); position:relative; }
+  .foto { position:absolute; left:0; top:0; width:1080px; background-size:cover; background-repeat:no-repeat; }
+  .duas { position:absolute; left:0; top:0; width:1080px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .duas div { background-size:cover; }
+  .painel { position:absolute; left:0; right:0; bottom:0; padding:58px 88px 0; background:var(--nevoa); }
+  .rotulo { font-family:'Jost'; font-weight:500; font-size:22px; letter-spacing:0.28em; text-transform:uppercase; color:var(--pedra); display:flex; align-items:center; gap:18px; }
+  .rotulo i { display:block; width:56px; height:1.5px; background:var(--concreto); }
+  h1 { font-family:'Jost'; font-weight:300; font-size:76px; line-height:1.05; letter-spacing:-0.01em; margin-top:26px; }
+  h1 b { font-weight:500; }
+  .sub { font-size:30px; line-height:1.45; color:var(--pedra); margin-top:20px; max-width:880px; }
+  .cta { display:inline-flex; align-items:center; gap:16px; background:var(--grafite); color:#fff; font-weight:500; font-size:27px; padding:20px 36px; border-radius:999px; margin-top:30px; }
+  .cta svg { width:28px; height:28px; }
+  .rodape { position:absolute; left:88px; right:88px; bottom:52px; display:flex; justify-content:space-between; align-items:center; font-size:21px; color:var(--pedra); }
+  .rodape .marca { display:flex; align-items:center; gap:14px; font-family:'Jost'; font-weight:500; letter-spacing:0.06em; color:var(--grafite); }
+  .rodape img { height:42px; }
+  .dir { display:flex; align-items:center; gap:26px; }
+  .nota { font-size:19px; color:var(--pedra); }
+  .contador { font-family:'Jost'; font-weight:400; font-size:21px; letter-spacing:0.2em; color:var(--pedra); }
+  .centro { position:absolute; inset:0; padding:96px 88px 0; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .tira { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; width:100%; margin-top:64px; }
+  .tira div { aspect-ratio:1; border-radius:16px; background-size:cover; background-position:center; }
+</style>
+</head><body>
+<div id="arte"></div>
+<script type="module">
+  import { ARTES } from './artes-foto.js';
+  const id = new URLSearchParams(location.search).get('id');
+  document.getElementById('arte').innerHTML = ARTES[id];
+  await document.fonts.ready;
+  await Promise.all([...document.querySelectorAll('[data-src]')].map((el) => new Promise((ok) => {
+    const im = new Image(); im.onload = ok; im.onerror = ok; im.src = el.dataset.src;
+  })));
+  await new Promise((r) => setTimeout(r, 300));
+  window.PRONTO = true;
+</script>
+</body></html>
